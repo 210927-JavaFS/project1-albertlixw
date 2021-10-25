@@ -1,0 +1,57 @@
+package models;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Objects;
+
+@Entity
+public class ReimbursementType {
+    @Id
+    private int typeId;
+    private String type;
+
+    public ReimbursementType(int typeId, String type) {
+        this.typeId = typeId;
+        this.type = type;
+    }
+
+    public ReimbursementType() {
+        super();
+    }
+    @Override
+    public String toString() {
+        return "ReimbursementType{" +
+                "typeId=" + typeId +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ReimbursementType that = (ReimbursementType) o;
+        return typeId == that.typeId && Objects.equals(type, that.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(typeId, type);
+    }
+
+    public int getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+}
