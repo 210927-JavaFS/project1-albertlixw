@@ -88,7 +88,7 @@ public class UserController implements Controller{
             ctx.status(200);
         } else{
             ctx.req.getSession().invalidate();
-          ctx.status(401);
+            ctx.status(401);
         }
     };
 

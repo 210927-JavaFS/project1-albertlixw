@@ -23,7 +23,6 @@ async function loginToApp(){
         method: "POST",
         body:JSON.stringify(user),
         credentials:"include"//this will save the cookie when we receive it. 
-    
     });
     if(response.status === 200){
         document.getElementsByClassName("formClass")[0].innerHTML = '';
