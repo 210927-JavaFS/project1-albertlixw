@@ -1,6 +1,7 @@
 package repos;
 
 import models.ReimbursementStatus;
+import models.ReimbursementType;
 import models.Role;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -10,6 +11,19 @@ import utils.HibernateUtil;
 import java.util.List;
 
 public class ReimbursementStatusDAOImpl implements ReimbursementStatusDAO{
+//    public static void main(String[] args) {
+//        ReimbursementStatus status1 = new ReimbursementStatus(1, "Submitted");
+//        ReimbursementStatus status2 = new ReimbursementStatus(2, "Pending");
+//        ReimbursementStatus status3 = new ReimbursementStatus(3, "Approved");
+//        ReimbursementStatus status4 = new ReimbursementStatus(4, "Denied");
+//
+//        ReimbursementStatusDAO reimbursementStatusDAO = new ReimbursementStatusDAOImpl();
+//        reimbursementStatusDAO.addReimbursementStatus(status1);
+//        reimbursementStatusDAO.addReimbursementStatus(status2);
+//        reimbursementStatusDAO.addReimbursementStatus(status3);
+//        reimbursementStatusDAO.addReimbursementStatus(status4);
+//    }
+
     @Override
     public List<ReimbursementStatus> findAllReimbursementStatus() {
         Session session = HibernateUtil.getSession();

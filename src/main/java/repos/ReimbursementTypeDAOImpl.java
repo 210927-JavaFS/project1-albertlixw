@@ -10,6 +10,9 @@ import utils.HibernateUtil;
 import java.util.List;
 
 public class ReimbursementTypeDAOImpl implements ReimbursementTypeDAO{
+
+
+
     @Override
     public List<ReimbursementType> findAllReimbursementType() {
         Session session = HibernateUtil.getSession();

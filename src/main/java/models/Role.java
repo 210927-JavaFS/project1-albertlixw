@@ -1,11 +1,22 @@
 package models;
 
+import repos.RoleDAO;
+import repos.RoleDAOImpl;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
 public class Role {
+
+//    public static void main(String[] args) {
+//        RoleDAO roleDAO = new RoleDAOImpl();
+//        roleDAO.addRole(new Role (1, "Employee"));
+//        roleDAO.addRole(new Role (2, "Finance Manager"));
+////        roleDAO.addRole(new Role (1, "Employee"));
+//    }
+
     @Id
     private int roleId;
     private String role;  //varchar2(10)

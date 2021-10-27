@@ -1,5 +1,6 @@
 package repos;
 
+import models.Role;
 import models.User;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -8,15 +9,22 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import utils.HibernateUtil;
 
+import javax.persistence.TypedQuery;
 import java.sql.SQLException;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO{
+    
+//    public static void main(String[] args) {
+//        UserDAO userDAO = new UserDAOImpl();
+//
+//        userDAO.addUser(new User("asd", "123".hashCode(), "123@123.com", "Steve", "Rogers", new Role(1, "employee")));
+//    }
 
     //TODO: Delete this
     public User getByUsername(String username) {
         if(username.equals("asd")) {
-            return new User("asd", "123".hashCode(), "123@123.com", "Steve", "Rogers", 1);
+            return new User("asd", "123".hashCode(), "123@123.com", "Steve", "Rogers", new Role(1, "employee"));
 
         }
         return null;
@@ -39,11 +47,13 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User findByUsername(String username) {
         Session session = HibernateUtil.getSession();
-        //TODO: verify usefulness. 
 //        Criteria criteria = session.createCriteria(username.getClass());
 //        Query query = session.createQuery("SELECT * from users u WHERE u.username = ?");
 //        query.setParameter(1, username) ;
-        return session.get(User.class, username);
+        //difference with line 44: am I referencing the User obj or users table
+        TypedQuery<User> typed = session.createQuery("FROM User WHERE username = ?"); // getResultList() method is in here.
+        typed.setParameter(1, username);
+        return typed.getResultList().get(0);
 //        (User.class, username);
     }
 
