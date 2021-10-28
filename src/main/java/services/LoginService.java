@@ -9,9 +9,9 @@ public class LoginService {
       private UserDAO userDAO = new UserDAOImpl();
 
       public boolean login(UserDTO userDTO){
-          User user = userDAO.getByUsername(userDTO.username);
+          User user = userDAO.findByUsername(userDTO.username);
           if(user!=null && (userDTO.password.hashCode()==user.getPassword())){
-              return true;
+             return true;
           }
 
           return false;

@@ -86,6 +86,7 @@ public class UserController implements Controller{
         if(loginService.login(userDTO)){
             ctx.req.getSession();
             ctx.status(200);
+//            System.out.println(200);
         } else{
             ctx.req.getSession().invalidate();
             ctx.status(401);
@@ -97,8 +98,8 @@ public class UserController implements Controller{
         app.get("/users", this.getAllUsers);
         app.get("/users/:user", this.getUser);
         app.post("/users", this.addUser);
-        app.put("users", this.updateUser);
-        app.delete("users/:user", this.deleteUser);
+        app.put("/users", this.updateUser);
+        app.delete("/users/:user", this.deleteUser);
         app.post("/login", this.loginAttempt);
     }
 }

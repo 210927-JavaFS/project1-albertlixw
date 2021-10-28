@@ -2,17 +2,17 @@ const URL = "http://localhost:8081/"
 
 let buttonRow = document.getElementById("buttonRow");
 let userButton = document.getElementById('userButton');
-let homeButton = document.getElementById('homeButton');
-let addHomeButton = document.getElementById("addHomeButton");
+let reimbButton = document.getElementById('reimbButton');
+let addReimbButton = document.getElementById("addReimbButton");
 let loginButton = document.getElementById('loginButton');
 
 userButton.onclick = getUsers;
-homeButton.onclick = getHomes;
-addHomeButton.onclick = addHome;
+reimbButton.onclick = getReimb;
+addHomeButton.onclick = addHome; //TODO
 loginButton.onclick = loginToApp;
 
 userButton.innerText = "Get All Users";
-homeButton.innerText = "See Homes";
+reimbButton.innerText = "Show All Reimbursement Requests";
 
 async function loginToApp(){
     let user = {
@@ -27,7 +27,7 @@ async function loginToApp(){
     if(response.status === 200){
         document.getElementsByClassName("formClass")[0].innerHTML = '';
         buttonRow.appendChild(userButton);
-        buttonRow.appendChild(homeButton);
+            buttonRow.appendChild(reimbButton);
     }else{
         let para = document.createElement("p");
         para.setAttribute("style", "color:red")
@@ -43,6 +43,7 @@ async function getUsers(){
     if(response.status === 200){
         let data = await response.json(); 
         populateUsersTable(data);
+        // console.log(data);
 
     }else{
         console.log("The users are too busy saving the planet to respond. ")
@@ -59,10 +60,10 @@ function populateUsersTable(data){
         
         for(let cell in user){
             let td = document.createElement("td");
-            if(cell!="home"){
+            if(cell!="role"){
                 td.innerText = user[cell];
             }else if(user[cell]){//if null: false. else true. 
-                td.innerText = `${user[cell].name}: ${user[cell].streetNumber} ${user[cell].streetName} ${user[cell].city} ${user[cell].region} ${user[cell].zip} ${user[cell].country} `
+                td.innerText = `${user[cell].role}  `
             }
             row.appendChild(td);
 
@@ -70,35 +71,35 @@ function populateUsersTable(data){
         tbody.appendChild(row);
     }
 }
-
-async function getHomes(){
-    let response = await fetch(URL + "homes", {credentials:"include"});
+async function getReimb(){
+    let response = await fetch(URL + "reimbursements", {credentials:"include"});
     console.log('after fetch');
+    console.log(response);
 
     if(response.status===200){
         console.log('about to start');
         let data = await response.json();
         console.log(data);
 
-        populateHomeTable(data);
+        populateReimbTable(data);
 
         //parsing json takes time, need await. 
 
     }else{
-        console.log("homes not available");
+        console.log("Reimbursements not available");
     }
 }
 
-function populateHomeTable(data){
-    let tbody = document.getElementById("homeBody");
+function populateReimbTable(data){
+    let tbody = document.getElementById("reimbBody");
 
     tbody.innerHTML= "";
 
-    for(let home of data){
+    for(let reimb of data){
         let row = document.createElement("tr");
         for(let cell in home){
             let td = document.createElement("td");
-            td.innerText = home[cell];
+            td.innerText = reimb[cell];
             row.appendChild(td);
         }
         tbody.appendChild(row);

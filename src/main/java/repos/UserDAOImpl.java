@@ -10,6 +10,9 @@ import org.hibernate.query.Query;
 import utils.HibernateUtil;
 
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -21,14 +24,7 @@ public class UserDAOImpl implements UserDAO{
 //        userDAO.addUser(new User("asd", "123".hashCode(), "123@123.com", "Steve", "Rogers", new Role(1, "employee")));
 //    }
 
-    //TODO: Delete this
-    public User getByUsername(String username) {
-        if(username.equals("asd")) {
-            return new User("asd", "123".hashCode(), "123@123.com", "Steve", "Rogers", new Role(1, "employee"));
 
-        }
-        return null;
-    }
 
     @Override
     public List<User> findAllUsers() {
@@ -47,16 +43,20 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User findByUsername(String username) {
         Session session = HibernateUtil.getSession();
-//        Criteria criteria = session.createCriteria(username.getClass());
-//        Query query = session.createQuery("SELECT * from users u WHERE u.username = ?");
-//        query.setParameter(1, username) ;
-        //difference with line 44: am I referencing the User obj or users table
-        TypedQuery<User> typed = session.createQuery("FROM User WHERE username = ?"); // getResultList() method is in here.
-        typed.setParameter(1, username);
-        return typed.getResultList().get(0);
-//        (User.class, username);
+        System.out.println("Method Loaded");
+        List<User> list = session.createQuery("FROM User WHERE username = '" + username + "'").list();
+        System.out.println(list + "List printed Here");
+        System.out.println(list.get(0) + "List printed Here");
+        return list.get(0);
     }
-
+//    //Fake login
+//    public User getByUsername(String username) {
+//        if(username.equals("asd")) {
+//            return new User("asd", "123".hashCode(), "123@123.com", "Steve", "Rogers", new Role(1, "employee"));
+//
+//        }
+//        return null;
+//    }
     @Override
     public boolean addUser(User user) {
         try{

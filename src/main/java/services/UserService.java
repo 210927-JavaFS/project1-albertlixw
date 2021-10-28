@@ -10,9 +10,9 @@ public class UserService {
     
     private UserDAO userDao = new UserDAOImpl();
 
-    public User getByUserName(String username){
-        return userDao.getByUsername(username);
-    }
+//    public User getByUserName(String username){
+//        return userDao.getByUsername(username);
+//    }
 
      public List<User> findAllUsers(){
          return userDao.findAllUsers();

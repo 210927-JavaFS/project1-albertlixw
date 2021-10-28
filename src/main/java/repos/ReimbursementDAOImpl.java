@@ -21,13 +21,15 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 //        ReimbursementType type4 = new ReimbursementType(4, "Other");
 //        Role role1 = new Role (1, "Employee");
 //        Role role2 = new Role (2, "Finance Manager");
-//        User steve = new User("Alex", "123".hashCode(), "Alex@employee.com", "Alex", "Alex", role1);
+//        User asd = new User("asd", "123".hashCode(), "asd@123.com", "asd", "asd", role2);
+//
+//        User steve = new User("alex", "123".hashCode(), "alex@employee.com", "alex", "alex", role1);
 //        User manager = new User("Manager2", "123".hashCode(), "1234@manager.com", "Manager", "Manager", role2);
 //
-//        reimbursementDAO.addReimbursement(new Reimbursement(400, "deniend", steve, type4));
-//        reimbursementDAO.addReimbursement(new Reimbursement(300, "approved", steve, type3));
-//        reimbursementDAO.addReimbursement(new Reimbursement(200, "pending", manager, type2));
-//        reimbursementDAO.addReimbursement(new Reimbursement(100, "submitted", manager, type1));
+//        reimbursementDAO.addReimbursement(new Reimbursement(400, "Other", steve, type4));
+//        reimbursementDAO.addReimbursement(new Reimbursement(300, "Food", steve, type3));
+//        reimbursementDAO.addReimbursement(new Reimbursement(200, "Travel", manager, type2));
+//        reimbursementDAO.addReimbursement(new Reimbursement(100, "Lodging", asd, type1));
 //    }
 
     @Override
