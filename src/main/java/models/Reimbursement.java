@@ -15,16 +15,19 @@ public class Reimbursement {
     private String description;
     private Blob receipt; //stretch goal
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)   //fetch lazy: fetch from proxy wouldn't work.
     @JoinColumn(name = "userId")
+//    @Column(name = "author")//gotta fetch them eagerly.
     private User author;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //TODO: THERE's ONLY 1 field in DB says userId, instead of 2 columns
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "userId", insertable = false, updatable = false)
+//    @Column(name = "resolver")
     private User resolver;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "statusId")
     private ReimbursementStatus status;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "typeId")
     private ReimbursementType type;
 
@@ -34,7 +37,7 @@ public class Reimbursement {
         this.description = description;
         this.author = author;
         this.type = type;
-        this.status = new ReimbursementStatus(1, "submitted");
+        this.status = new ReimbursementStatus(1);
     }
 
     public Reimbursement(int amount, Timestamp submitted, Timestamp resolved, String description, Blob receipt, User author, ReimbursementStatus status, ReimbursementType type) {

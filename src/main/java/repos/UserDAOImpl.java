@@ -1,19 +1,11 @@
 package repos;
 
-import models.Role;
 import models.User;
-import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import utils.HibernateUtil;
 
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import java.sql.SQLException;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO{
@@ -42,11 +34,13 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public User findByUsername(String username) {
-        Session session = HibernateUtil.getSession();
-        System.out.println("Method Loaded");
-        List<User> list = session.createQuery("FROM User WHERE username = '" + username + "'").list();
-        System.out.println(list + "List printed Here");
-        System.out.println(list.get(0) + "List printed Here");
+        List<User> list;
+        try (Session session = HibernateUtil.getSession()) {
+//        System.out.println("Method Loaded");
+            list = session.createQuery("FROM User WHERE username = '" + username + "'").list();
+        }
+//        System.out.println(list + "List printed Here");
+//        System.out.println(list.get(0) + "List printed Here");
         return list.get(0);
     }
 //    //Fake login

@@ -12,9 +12,9 @@ import java.util.List;
 
 public class ReimbursementStatusDAOImpl implements ReimbursementStatusDAO{
 //    public static void main(String[] args) {
-//        ReimbursementStatus status1 = new ReimbursementStatus(1, "Pending");
-//        ReimbursementStatus status2 = new ReimbursementStatus(2, "Approved");
-//        ReimbursementStatus status3 = new ReimbursementStatus(3, "Denied");
+//        ReimbursementStatus status1 = new ReimbursementStatus(1);
+//        ReimbursementStatus status2 = new ReimbursementStatus(2);
+//        ReimbursementStatus status3 = new ReimbursementStatus(3);
 //
 //        ReimbursementStatusDAO reimbursementStatusDAO = new ReimbursementStatusDAOImpl();
 //        reimbursementStatusDAO.addReimbursementStatus(status1);

@@ -8,7 +8,7 @@ let loginButton = document.getElementById('loginButton');
 
 userButton.onclick = getUsers;
 reimbButton.onclick = getReimb;
-addHomeButton.onclick = addHome; //TODO
+addReimbButton.onclick = addReimb; //TODO
 loginButton.onclick = loginToApp;
 
 userButton.innerText = "Get All Users";
@@ -72,9 +72,7 @@ function populateUsersTable(data){
     }
 }
 async function getReimb(){
-    let response = await fetch(URL + "reimbursements", {credentials:"include"});
-    console.log('after fetch');
-    console.log(response);
+    let response = await fetch(URL + "reimbs", {credentials:"include"});
 
     if(response.status===200){
         console.log('about to start');
@@ -97,50 +95,69 @@ function populateReimbTable(data){
 
     for(let reimb of data){
         let row = document.createElement("tr");
-        for(let cell in home){
+        for(let cell in reimb){
             let td = document.createElement("td");
             td.innerText = reimb[cell];
             row.appendChild(td);
+            if((cell=="resolver" ||cell=="author")&&reimb[cell]){
+                td.innerText = reimb[cell].userId;
+            }else if(cell=="status"&&reimb[cell]){//if null: false. else true. 
+                td.innerText = `${reimb[cell].status}  `
+            }else if(cell=="type"&&reimb[cell]){//if null: false. else true. 
+                td.innerText = `${reimb[cell].type}  `
+            }else if((cell=="submitted"||cell=="resolved")&&reimb[cell]){//if null: false. else true. 
+                
+                td.innerText = `${convertTimestamp(reimb[cell])}  `
+            }else if(cell=="receipt"&&reimb[cell]){//if null: false. else true. 
+                td.innerText = `${reimb[cell]}  `
+            }else if(reimb[cell]){
+                td.innerText = `${reimb[cell]}  `
+            }
         }
         tbody.appendChild(row);
     }
 }
 
+function convertTimestamp(unix_timestamp){
+    var date = new Date(unix_timestamp);
 
-function getNewHome(){
-    let newName = document.getElementById("homeName").value;
-    let newStreetNum = document.getElementById("homeStreetNum").value;
-    let newStreetName = document.getElementById("homeStreetName").value;
-    let newCity = document.getElementById("homeCity").value;
-    let newRegion = document.getElementById("homeRegion").value;
-    let newZip = document.getElementById("homeZip").value;
-    let newCountry = document.getElementById("homeCountry").value;
-
-    let home = {
-        name:newName, 
-        streetNumber:newStreetNum,
-        streetName: newStreetName,
-        city: newCity,
-        zip: newZip,
-        region: newRegion,
-        country: newCountry
-    }
-
-    return home;
+    return date;
 }
 
-async function addHome(){
-    let home = await getNewHome();
-    let response = await fetch(URL + "homes", {
+function getNewReimb(){
+    let newAmount = document.getElementById("amount").value;
+    let newDescription = document.getElementById("description").value;
+    // let newAuthor = document.getElementById("author").value;
+    let newType = document.getElementById("type").value;
+    // let newRegion = document.getElementById("homeRegion").value;
+    // let newZip = document.getElementById("homeZip").value;
+    // let newCountry = document.getElementById("homeCountry").value;
+
+    let reimb = {
+        amount:newAmount, 
+        description:newDescription,
+        // author: newAuthor,
+        type: newType
+        // zip: newZip,
+        // region: newRegion,
+        // country: newCountry
+    }
+
+    return reimb;
+}
+
+async function addReimb(){
+    let reimb = await getNewReimb();
+    let response = await fetch(URL + "reimbs", {
         method: 'POST',
-        body: JSON.stringify(home),
+        body: JSON.stringify(reimb),
         credentials:"include"
     });
 
     if(response.status===201){
-        console.log("Home created successfully. ");
+        console.log("reimbursement created successfully. ");
     }else{
-        console.log("Something went wrong creating your home. ");
+        console.log("Something went wrong creating your reimbursement. ");
     }
 
 }

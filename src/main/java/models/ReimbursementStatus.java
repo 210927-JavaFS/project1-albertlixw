@@ -10,22 +10,16 @@ public class ReimbursementStatus {
     @Id
 //    @Column(name = "status_id")
     private int statusId;
-    private String status = "submitted";
+    private String status = "pending";
 
     public ReimbursementStatus(int statusId) {
         if(statusId==1){
-            status = "submitted";
-        }else if(statusId == 2){
             status = "pending";
-
-        }
-        else if(statusId == 3){
+        }else if(statusId == 2){
             status = "approved";
-
         }
-        else if(statusId == 4){
+        else if(statusId == 3) {
             status = "denied";
-
         }
         this.statusId = statusId;
     }

@@ -26,10 +26,10 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 //        User steve = new User("alex", "123".hashCode(), "alex@employee.com", "alex", "alex", role1);
 //        User manager = new User("Manager2", "123".hashCode(), "1234@manager.com", "Manager", "Manager", role2);
 //
-//        reimbursementDAO.addReimbursement(new Reimbursement(400, "Other", steve, type4));
-//        reimbursementDAO.addReimbursement(new Reimbursement(300, "Food", steve, type3));
-//        reimbursementDAO.addReimbursement(new Reimbursement(200, "Travel", manager, type2));
 //        reimbursementDAO.addReimbursement(new Reimbursement(100, "Lodging", asd, type1));
+//        reimbursementDAO.addReimbursement(new Reimbursement(200, "Travel", manager, type2));
+//        reimbursementDAO.addReimbursement(new Reimbursement(300, "Food", steve, type3));
+//        reimbursementDAO.addReimbursement(new Reimbursement(400, "Other", steve, type4));
 //    }
 
     @Override

@@ -53,11 +53,12 @@
             <tr>
                 <th class = "col-sm-1">Id</th>
                 <th class = "col-sm-1">Amount</th>
-                
+
+                <th class = "col-sm-2">Submitted on</th>
+                <th class = "col-sm-2">Resolved time</th>
+
                 <th class = "col-sm-4">Description</th>
                 <th class = "col-sm-1">receipt</th>
-                <th class = "col-sm-2">Resolved time</th>
-                <th class = "col-sm-2">Submitted on</th>
 
                 <th class = "col-sm-1">Author</th>
                 <th class = "col-sm-1">Resolver</th>
@@ -75,24 +76,26 @@
     <br><br>
 
     <form class="form-control">
-        <label for="homeName">New Home's Name</label>
-        <input type="text" id = "homeName" name = "homeName">
-        <label for="homeStreetNum">Home's street Number</label>
-        <input type="text" id = "homeStreetNum" name = "homeStreetNum">
-        <label for="homeStreetName">Home's Street Name</label>
-        <input type="text" id = "homeStreetName" name = "homeStreetName">
-        <label for="homeCity">Home's City</label>
-        <input type="text" id = "homeCity" name = "homeCity">
-        <label for="homeRegion">Home's Region</label>
+        <label for="amount">$ Amount</label>
+        <input type="text" id = "amount" name = "amount">
+        <label for="description">Description</label>
+        <input type="text" id = "description" name = "description">
+
+        <!-- <label for="author">Author ID</label>
+        <input type="text" id = "author" name = "author"> -->
+        <label for="type">Type of Reimb</label>
+        <input type="text" id = "type" name = "type">
+
+        <!-- <label for="homeRegion">Home's Region</label>
         <input type="text" id = "homeRegion" name = "homeRegion">
         <label for="homeZip">Home's ZIP</label>
         <input type="text" id = "homeZip" name = "homeZip">
         <label for="homeCountry">Home Country</label>
-        <input type="text" id = "homeCountry" name = "homeCountry">
+        <input type="text" id = "homeCountry" name = "homeCountry"> -->
         
     </form>
 
-    <button class = "btn btn-primary" id = "addHomeButton">Add your Home</button>
+    <button class = "btn btn-primary" id = "addReimbButton">Add your Reimbursement</button>
 
 
     <script src="ERS.js"></script>
