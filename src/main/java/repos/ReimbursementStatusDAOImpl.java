@@ -11,16 +11,7 @@ import utils.HibernateUtil;
 import java.util.List;
 
 public class ReimbursementStatusDAOImpl implements ReimbursementStatusDAO{
-//    public static void main(String[] args) {
-//        ReimbursementStatus status1 = new ReimbursementStatus(1);
-//        ReimbursementStatus status2 = new ReimbursementStatus(2);
-//        ReimbursementStatus status3 = new ReimbursementStatus(3);
-//
-//        ReimbursementStatusDAO reimbursementStatusDAO = new ReimbursementStatusDAOImpl();
-//        reimbursementStatusDAO.addReimbursementStatus(status1);
-//        reimbursementStatusDAO.addReimbursementStatus(status2);
-//        reimbursementStatusDAO.addReimbursementStatus(status3);
-//    }
+
 
     @Override
     public List<ReimbursementStatus> findAllReimbursementStatus() {

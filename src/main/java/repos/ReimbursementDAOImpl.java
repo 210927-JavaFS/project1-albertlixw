@@ -1,9 +1,9 @@
 package repos;
 
-import models.Reimbursement;
-import models.ReimbursementType;
-import models.Role;
-import models.User;
+import models.*;
+//import models.ReimbursementType;
+//import models.Role;
+//import models.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,37 +13,23 @@ import java.util.List;
 
 public class ReimbursementDAOImpl implements ReimbursementDAO{
 
-//    public static void main(String[] args) {
-//        ReimbursementDAO reimbursementDAO = new ReimbursementDAOImpl();
-//        ReimbursementType type1 = new ReimbursementType(1, "Lodging");
-//        ReimbursementType type2 = new ReimbursementType(2, "Travel");
-//        ReimbursementType type3 = new ReimbursementType(3, "Food");
-//        ReimbursementType type4 = new ReimbursementType(4, "Other");
-//        Role role1 = new Role (1, "Employee");
-//        Role role2 = new Role (2, "Finance Manager");
-//        User asd = new User("asd", "123".hashCode(), "asd@123.com", "asd", "asd", role2);
-//
-//        User steve = new User("alex", "123".hashCode(), "alex@employee.com", "alex", "alex", role1);
-//        User manager = new User("Manager2", "123".hashCode(), "1234@manager.com", "Manager", "Manager", role2);
-//
-//        reimbursementDAO.addReimbursement(new Reimbursement(100, "Lodging", asd, type1));
-//        reimbursementDAO.addReimbursement(new Reimbursement(200, "Travel", manager, type2));
-//        reimbursementDAO.addReimbursement(new Reimbursement(300, "Food", steve, type3));
-//        reimbursementDAO.addReimbursement(new Reimbursement(400, "Other", steve, type4));
-//    }
-
     @Override
     public List<Reimbursement> findAllReimbursement() {
         Session session = HibernateUtil.getSession();
+        List<Reimbursement> list = session.createQuery("FROM Reimbursement").list();
+        HibernateUtil.closeSession();
 
-        return session.createQuery("FROM Reimbursement").list();
+        return list;
     }
 
     @Override
     public Reimbursement findByReimbId(int reimbId) {
         Session session = HibernateUtil.getSession();
+        Reimbursement reimb = session.get(Reimbursement.class, reimbId);
+        HibernateUtil.closeSession();
 
-        return session.get(Reimbursement.class, reimbId);    }
+        return reimb;
+    }
 
     @Override
     public Reimbursement findByAuthorId(int userid) {
@@ -68,7 +54,6 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
     @Override
     public boolean addReimbursement(Reimbursement reimbursement) {
         try{
-
             Session session = HibernateUtil.getSession();
             Transaction transaction = session.beginTransaction();
             session.save(reimbursement);

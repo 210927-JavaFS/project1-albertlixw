@@ -10,6 +10,19 @@ public class ReimbursementType {
     private int typeId;
     private String type;
 
+    public ReimbursementType(int typeId) {
+        if(typeId == 1){
+            this.type = "Lodging";
+        }else if(typeId == 2){
+            this.type = "Travel";
+        }else if(typeId == 3){
+            this.type = "Food";
+        }else if(typeId == 4){
+            this.type = "Other";
+        }
+        this.typeId = typeId;
+    }
+
     public ReimbursementType(int typeId, String type) {
         this.typeId = typeId;
         this.type = type;

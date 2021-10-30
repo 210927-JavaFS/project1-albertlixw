@@ -9,26 +9,31 @@ import java.util.Objects;
 public class Reimbursement {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reimbId;
+    @Column(nullable = false)
     private int amount = 0;
-    private Timestamp submitted, resolved;
+    @Column(nullable = false)
+    private Timestamp submitted;
+    
+    private Timestamp resolved;
     //java date time, timestamp
     private String description;
     private Blob receipt; //stretch goal
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)   //fetch lazy: fetch from proxy wouldn't work.
-    @JoinColumn(name = "userId")
-//    @Column(name = "author")//gotta fetch them eagerly.
+    //TODO: cancel comment
+//    @Column(nullable = false)//gotta fetch them eagerly.
     private User author;
-    //TODO: THERE's ONLY 1 field in DB says userId, instead of 2 columns
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId", insertable = false, updatable = false)
+    @JoinColumn(insertable = false, updatable = false) //name = "userId", 
 //    @Column(name = "resolver")
     private User resolver;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "statusId")
+    @JoinColumn(name = "statusId", nullable = false)
     private ReimbursementStatus status;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "typeId")
+    @JoinColumn(name = "typeId", nullable = false)
     private ReimbursementType type;
 
     public Reimbursement(int amount, String description, User author, ReimbursementType type) {

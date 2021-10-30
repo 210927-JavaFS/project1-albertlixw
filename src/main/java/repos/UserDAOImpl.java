@@ -10,26 +10,23 @@ import java.util.List;
 
 public class UserDAOImpl implements UserDAO{
     
-//    public static void main(String[] args) {
-//        UserDAO userDAO = new UserDAOImpl();
-//
-//        userDAO.addUser(new User("asd", "123".hashCode(), "123@123.com", "Steve", "Rogers", new Role(1, "employee")));
-//    }
-
-
-
     @Override
     public List<User> findAllUsers() {
         Session session = HibernateUtil.getSession();
 
-        return session.createQuery("FROM User").list();
+        List<User>list = session.createQuery("FROM User").list();
+        HibernateUtil.closeSession();
+
+        return list;
     }
 
     @Override
     public User findById(int id) {
         Session session = HibernateUtil.getSession();
+        User user = session.get(User.class, id);
+        HibernateUtil.closeSession();
 
-        return session.get(User.class, id);
+        return user;
     }
 
     @Override
@@ -38,10 +35,13 @@ public class UserDAOImpl implements UserDAO{
         try (Session session = HibernateUtil.getSession()) {
 //        System.out.println("Method Loaded");
             list = session.createQuery("FROM User WHERE username = '" + username + "'").list();
+            HibernateUtil.closeSession();
+
+            return list.get(0);
+        }catch(HibernateException e){
+            e.printStackTrace();
         }
-//        System.out.println(list + "List printed Here");
-//        System.out.println(list.get(0) + "List printed Here");
-        return list.get(0);
+        return null;
     }
 //    //Fake login
 //    public User getByUsername(String username) {
