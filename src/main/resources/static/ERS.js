@@ -5,18 +5,21 @@ let userButton = document.getElementById('userButton');
 let reimbButton = document.getElementById('reimbButton');
 let addReimbButton = document.getElementById("addReimbButton");
 let loginButton = document.getElementById('loginButton');
+let getReimbIdButton = document.getElementById('getReimbIdButton');
+
 let approveButton = document.getElementById('approveButton');
 
 userButton.onclick = getUsers;
 reimbButton.onclick = getReimb;
 addReimbButton.onclick = addReimb; 
 loginButton.onclick = loginToApp;
+getReimbIdButton.onclick = getReimbById;
 
 // approveButton.onclick = approveReimb;
 
 userButton.innerText = "Get All Users";
 reimbButton.innerText = "Show All Reimbursement Requests";
-
+getReimbIdButton.innerText = "Find your ticket!";
 
 async function loginToApp(){
     let user = {
@@ -78,6 +81,7 @@ function populateUsersTable(data){
         tbody.appendChild(row);
     }
 }
+
 async function getReimb(){
     let response = await fetch(URL + "reimbs", {credentials:"include"});
 
@@ -98,14 +102,15 @@ async function getReimb(){
 function populateReimbTable(data){
     let tbody = document.getElementById("reimbBody");
 
-    tbody.innerHTML= "";
+    tbody.innerHTML = "";
+    // wipes out table before more data is displayed
 
     for(let reimb of data){
-        let row = document.createElement("tr");
-        for(let cell in reimb){
-            let td = document.createElement("td");
+        let row = document.createElement("tr");//creates empty row
+        for(let cell in reimb){             //create each cell
+            let td = document.createElement("td"); 
             td.innerText = reimb[cell];
-            row.appendChild(td);
+            row.appendChild(td);            //appends datacell to row
             if((cell=="resolver" ||cell=="author")&&reimb[cell]){
                 td.innerText = reimb[cell].userId;
             }else if(cell=="status"&&reimb[cell]){//if null: false. else true. 
@@ -121,7 +126,7 @@ function populateReimbTable(data){
                 td.innerText = `${reimb[cell]}  `
             }
         }
-        tbody.appendChild(row);
+        tbody.appendChild(row);     //appends the row after previous row in table
     }
 }
 
@@ -129,6 +134,47 @@ function convertTimestamp(unix_timestamp){
     var date = new Date(unix_timestamp);
 
     return date;
+}
+
+
+async function getReimbById(){
+
+    let reimbId = document.getElementById('reimbId').value;
+    let response = await fetch(URL + "reimbs/" + reimbId, {credentials:"include"});
+
+    if(response.status===200){
+        let tbody = document.getElementById("reimbBody");
+        tbody.innerHTML = "";
+
+        let data = await response.json();
+        // console.log(data);
+
+        // wipes out table before more data is displayed    
+        let row = document.createElement("tr");
+
+        for(let cell in data){
+            let td = document.createElement("td");
+            td.innerText = data[cell];
+            row.appendChild(td);
+            if((cell=="resolver" ||cell=="author")&&data[cell]){
+                td.innerText = data[cell].userId;
+            }else if(cell=="status"&&data[cell]){//if null: false. else true. 
+                td.innerText = `${data[cell].status}  `
+            }else if(cell=="type"&&data[cell]){//if null: false. else true. 
+                td.innerText = `${data[cell].type}  `
+            }else if((cell=="submitted"||cell=="resolved")&&data[cell]){//if null: false. else true. 
+                td.innerText = `${convertTimestamp(data[cell])}  `
+            }else if(cell=="receipt"&&data[cell]){//if null: false. else true. 
+                td.innerText = `${data[cell]}  `
+            }else if(data[cell]){
+                td.innerText = `${data[cell]}  `
+            }
+        }
+        //parsing json takes time, need await. 
+        tbody.appendChild(row);
+    }else{
+        console.log("Reimbursements not available");
+    }
 }
 
 function getNewReimb(){
@@ -165,6 +211,8 @@ async function addReimb(){
     }
 
 }
+
+
 // async function approveReimb(){
 //     let reimb = await fetch(URL + "reimbs/:reimb", {
 //         method: 'GET',
