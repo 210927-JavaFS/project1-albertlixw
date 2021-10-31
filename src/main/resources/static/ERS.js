@@ -135,27 +135,16 @@ function getNewReimb(){
     let newAmount = document.getElementById("amount").value;
     let newDescription = document.getElementById("description").value;
     let newAuthor = JSON.parse(sessionStorage.user);
-    // let newType = document.getElementById("type").value;
-
-    // let newRegion = document.getElementById("homeRegion").value;
-    // let newZip = document.getElementById("homeZip").value;
-    // let newCountry = document.getElementById("homeCountry").value;
+    let newTypeId = document.getElementById("typeId").value;
 
     let reimb = {
         amount:newAmount, 
         description:newDescription,
-        author: newAuthor
-        // statusId: 1
-        // typeId: 4
-        // {
-        //     statusId: 1,
-        //     status: "pending"
-        // },
-        // typeId: {
-        //     type = newType,
-        //     typeId = 4 
-        // }
-
+        author: newAuthor,
+        type: {
+            typeId: newTypeId
+            // type: "Other"
+        }
     }
 
     return reimb;

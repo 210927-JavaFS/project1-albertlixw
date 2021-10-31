@@ -37,7 +37,7 @@ public class UserDAOImpl implements UserDAO{
             list = session.createQuery("FROM User WHERE username = '" + username + "'").list();
             HibernateUtil.closeSession();
 
-            return list.get(0);
+            return list.isEmpty()?null:list.get(0);
         }catch(HibernateException e){
             e.printStackTrace();
         }
