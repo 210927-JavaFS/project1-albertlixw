@@ -4,14 +4,13 @@ import io.javalin.Javalin;
 import io.javalin.http.Handler;
 import models.User;
 import models.UserDTO;
-import services.LoginService;
 import services.UserService;
 
 import java.util.List;
 
 public class UserController implements Controller{
     private UserService userService = new UserService();
-    private LoginService loginService = new LoginService();
+
     public Handler getAllUsers = (ctx) -> {
         if(ctx.req.getSession(false)!=null){
             List<User> list = userService.findAllUsers();
@@ -83,7 +82,7 @@ public class UserController implements Controller{
 
     private Handler loginAttempt = (ctx) -> {
         UserDTO userDTO = ctx.bodyAsClass(UserDTO.class);
-        if(loginService.login(userDTO)){
+        if(userService.login(userDTO)){
             ctx.req.getSession();
             ctx.status(200);
 //            System.out.println(200);

@@ -241,13 +241,7 @@ async function approveReimb(){
     }
 }
 
-// // function getNewReimb(){
-// //     let newReimbId = document.getElementById("reimbSelect").value;
-// //     let newStatus = document.getElementById("reimbStatus").value;
-// //     let newResolver = JSON.parse(sessionStorage.user);
 
-// //     return reimb;
-// // }
 
 // function approve(){
 //     //approve
