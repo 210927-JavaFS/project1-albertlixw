@@ -20,13 +20,11 @@ public class Reimbursement {
     private Blob receipt; //stretch goal
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)   //fetch lazy: fetch from proxy wouldn't work.
-    //TODO: cancel comment
-//    @Column(nullable = false)//gotta fetch them eagerly.
+    @JoinColumn(name = "author_userid",nullable = false)//gotta fetch them eagerly.  //name = "author_userId",
     private User author;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(insertable = false, updatable = false) //name = "userId", 
-//    @Column(name = "resolver")
+    @JoinColumn(name = "resolver_userid") //name = "resolver_userId",
     private User resolver;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

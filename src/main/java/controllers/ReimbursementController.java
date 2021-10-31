@@ -14,7 +14,7 @@ public class ReimbursementController implements Controller{
     public Handler resolveReimb = (ctx) -> {
          if(ctx.req.getSession(false)!=null){
              Reimbursement reimb = ctx.bodyAsClass(Reimbursement.class);
-             
+
              if(reimbursementService.resolveTicket(reimb)){
                 ctx.status(200);
              }else{
@@ -45,7 +45,6 @@ public class ReimbursementController implements Controller{
         }
     };
 
-    //TODO: USE THIS TO GET Reimb
     public Handler getReimb = (ctx) -> {
         if(ctx.req.getSession(false)!=null){
              try{

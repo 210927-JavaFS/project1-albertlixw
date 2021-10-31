@@ -146,7 +146,7 @@ async function getReimbById(){
         let data = await response.json();
         // console.log(data);
         printOneReimb(data);
-        return data;
+        // return data;
     }else{
         console.log("Reimbursements not available");
     }
@@ -218,11 +218,12 @@ async function addReimb(){
 
 
 async function approveReimb(){
-    let reimb = getReimbById();
+    let newReimbId = document.getElementById('reimbId').value;
     let newStatusId = document.getElementById('reimbStatus').value;
     let newResolver = JSON.parse(sessionStorage.user);
     
-    reimb = {
+    let reimb = {
+        reimbId: newReimbId,
         resolver: newResolver,
         status:{
             statusId: newStatusId
@@ -234,7 +235,7 @@ async function approveReimb(){
         body:JSON.stringify(reimb),
         credentials:"include"
     });
-    if(response.status===201){
+    if(response.status===200){
         console.log("reimbursement status updated successfully. ");
     }else{
         console.log("Something went wrong updating your reimbursement. ");

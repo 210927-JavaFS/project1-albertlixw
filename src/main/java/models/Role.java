@@ -21,6 +21,15 @@ public class Role {
     private int roleId;
     private String role;  //varchar2(10)
 
+    public Role(int roleId) {
+        this.roleId = roleId;
+        if(roleId == 1){
+            this.role = "Employee";
+        }else if(roleId == 2){
+            this.role = "Finance Manager";
+        }
+    }
+
     public Role(int roleId, String role) {
         this.roleId = roleId;
         this.role = role;

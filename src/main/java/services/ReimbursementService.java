@@ -1,10 +1,7 @@
 package services;
 
 import controllers.ReimbursementController;
-import models.Reimbursement;
-import models.ReimbursementStatus;
-import models.ReimbursementType;
-import models.User;
+import models.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import repos.ReimbursementDAO;
@@ -20,18 +17,31 @@ public class ReimbursementService {
     private final UserDAO userDAO = new UserDAOImpl();
     private static final Logger log = LoggerFactory.getLogger(ReimbursementController.class);
 
-    //TODO: get curr manager logged in
-    public boolean resolveTicket(Reimbursement reimb){
-//        if(manager.getRole()==null||(manager.getRole().getRoleId()<2)){
-//            System.out.println(manager.getRole());
-//            log.warn("Unauthorized user tried to resolve tickets. Timestamp :" + new Timestamp(System.currentTimeMillis()));
-//            return false;
-//        }
-        User manager = userDAO.findByUsername(reimb.getResolver().getUsername());
-        ReimbursementStatus status = new ReimbursementStatus(reimb.getStatus().getStatusId());
+    public boolean resolveTicket(Reimbursement inputReimb){
+        Reimbursement reimb = reimbursementDAO.findByReimbId(inputReimb.getReimbId());
+
+        //get manager from inputReimb
+        User manager = userDAO.findByUsername(inputReimb.getResolver().getUsername());
+        System.out.println(manager);
+        
+        if(manager==null||manager.getRole()==null||(manager.getRole().getRoleId()<2)){
+            System.out.println("manager role: " + manager.getRole());
+
+
+            log.warn("Unauthorized user tried to resolve tickets. Timestamp :" + new Timestamp(System.currentTimeMillis()));
+            return false;
+        }
+
+        //get statusId from inputReimb
+        ReimbursementStatus status = new ReimbursementStatus(inputReimb.getStatus().getStatusId());
+        System.out.println("input status: " + status);
+
         reimb.setResolver(manager);
         reimb.setResolved();
         reimb.setStatus(status);
+        
+        System.out.println("after resolved: " + reimb);
+
         reimbursementDAO.updateReimbursement(reimb);
         return true;
     }
