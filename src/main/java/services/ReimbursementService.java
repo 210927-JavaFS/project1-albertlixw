@@ -5,8 +5,8 @@ import models.Reimbursement;
 import models.ReimbursementStatus;
 import models.ReimbursementType;
 import models.User;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import repos.ReimbursementDAO;
 import repos.ReimbursementDAOImpl;
 import repos.UserDAO;
@@ -18,20 +18,23 @@ import java.util.List;
 public class ReimbursementService {
     private final ReimbursementDAO reimbursementDAO = new ReimbursementDAOImpl();
     private final UserDAO userDAO = new UserDAOImpl();
-//    private static final Logger log = LoggerFactory.getLogger(ReimbursementController.class);
+    private static final Logger log = LoggerFactory.getLogger(ReimbursementController.class);
 
-//    public boolean resolveTicket(User manager, Reimbursement reimb, int statusId){
+    //TODO: get curr manager logged in
+    public boolean resolveTicket(Reimbursement reimb){
 //        if(manager.getRole()==null||(manager.getRole().getRoleId()<2)){
 //            System.out.println(manager.getRole());
 //            log.warn("Unauthorized user tried to resolve tickets. Timestamp :" + new Timestamp(System.currentTimeMillis()));
 //            return false;
 //        }
-//        reimb.setResolver(manager);
-//        reimb.setResolved();
-//        reimb.setStatus(new ReimbursementStatus(statusId));
-//        reimbursementDAO.updateReimbursement(reimb);
-//        return true;
-//    }
+        User manager = userDAO.findByUsername(reimb.getResolver().getUsername());
+        ReimbursementStatus status = new ReimbursementStatus(reimb.getStatus().getStatusId());
+        reimb.setResolver(manager);
+        reimb.setResolved();
+        reimb.setStatus(status);
+        reimbursementDAO.updateReimbursement(reimb);
+        return true;
+    }
 
     public List<Reimbursement> findAllReimbursement(){
         return reimbursementDAO.findAllReimbursement();

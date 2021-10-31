@@ -1,5 +1,6 @@
 package repos;
 
+import models.ReimbursementStatus;
 import models.ReimbursementType;
 import models.Role;
 import org.hibernate.HibernateException;
@@ -16,15 +17,18 @@ public class ReimbursementTypeDAOImpl implements ReimbursementTypeDAO{
     @Override
     public List<ReimbursementType> findAllReimbursementType() {
         Session session = HibernateUtil.getSession();
-
-        return session.createQuery("FROM ReimbursementType").list();
+        List<ReimbursementType> list = session.createQuery("FROM ReimbursementType").list();
+        HibernateUtil.closeSession();
+        return list;
     }
 
     @Override
     public ReimbursementType findById(int id) {
         Session session = HibernateUtil.getSession();
+        ReimbursementType type = session.get(ReimbursementType.class, id);
+        HibernateUtil.closeSession();
 
-        return session.get(ReimbursementType.class, id);
+        return type;
     }
 
     @Override
