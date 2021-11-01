@@ -19,7 +19,7 @@ approveButton.onclick = approveReimb;
 
 userButton.innerText = "Get All Users";
 reimbButton.innerText = "Show All Reimbursement Requests";
-getReimbIdButton.innerText = "Find your ticket!";
+getReimbIdButton.innerText = "Find this ticket!";
 
 async function loginToApp(){
     let user = {
@@ -131,7 +131,7 @@ function populateReimbTable(data){
 }
 
 function convertTimestamp(unix_timestamp){
-    var date = new Date(unix_timestamp);
+    let date = new Date(unix_timestamp);
 
     return date;
 }

@@ -2819,3 +2819,10 @@ java.lang.IllegalStateException: Multiple representations of the same entity [mo
 	Dependent entities: ([[models.Reimbursement#<null>]])
 	Non-nullable association(s): ([models.Reimbursement.author])
 21:51:07.150 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+21:54:53.899 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+21:55:07.639 [] [qtp578961422-23] WARN  controllers.ReimbursementController - Unauthorized user tried to resolve tickets. Timestamp :2021-10-31 21:55:07.639
+21:55:16.278 [] [qtp578961422-23] WARN  controllers.ReimbursementController - Unauthorized user tried to resolve tickets. Timestamp :2021-10-31 21:55:16.278
+21:55:18.594 [] [qtp578961422-24] WARN  controllers.ReimbursementController - Unauthorized user tried to resolve tickets. Timestamp :2021-10-31 21:55:18.594
+21:55:21.169 [] [qtp578961422-23] WARN  controllers.ReimbursementController - Unauthorized user tried to resolve tickets. Timestamp :2021-10-31 21:55:21.169
+21:55:31.248 [] [qtp578961422-31] WARN  controllers.ReimbursementController - Unauthorized user tried to resolve tickets. Timestamp :2021-10-31 21:55:31.248
+22:04:26.562 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
