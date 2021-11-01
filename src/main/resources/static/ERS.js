@@ -15,7 +15,7 @@ addReimbButton.onclick = addReimb;
 loginButton.onclick = loginToApp;
 getReimbIdButton.onclick = getReimbById;
 
-// approveButton.onclick = approveReimb;
+approveButton.onclick = approveReimb;
 
 userButton.innerText = "Get All Users";
 reimbButton.innerText = "Show All Reimbursement Requests";
@@ -143,12 +143,19 @@ async function getReimbById(){
     let response = await fetch(URL + "reimbs/" + reimbId, {credentials:"include"});
 
     if(response.status===200){
-        let tbody = document.getElementById("reimbBody");
-        tbody.innerHTML = "";
-
         let data = await response.json();
         // console.log(data);
+        printOneReimb(data);
+        // return data;
+    }else{
+        console.log("Reimbursements not available");
+    }
+}
 
+function printOneReimb(data){
+    let tbody = document.getElementById("reimbBody");
+        
+    tbody.innerHTML = "";
         // wipes out table before more data is displayed    
         let row = document.createElement("tr");
 
@@ -172,9 +179,6 @@ async function getReimbById(){
         }
         //parsing json takes time, need await. 
         tbody.appendChild(row);
-    }else{
-        console.log("Reimbursements not available");
-    }
 }
 
 function getNewReimb(){
@@ -213,31 +217,32 @@ async function addReimb(){
 }
 
 
-// async function approveReimb(){
-//     let reimb = await fetch(URL + "reimbs/:reimb", {
-//         method: 'GET',
-//         body: JSON.stringify(reimb),
-//         credentials:"include"
-//     });
-//     let response = await fetch(URL + "reimb", {
-//         method: "PUT",
-//         body:JSON.stringify(reimb),
-//         credentials:"include"
-//     });
-//     if(response.status===201){
-//         console.log("reimbursement status updated successfully. ");
-//     }else{
-//         console.log("Something went wrong updating your reimbursement. ");
-//     }
-// }
+async function approveReimb(){
+    let newReimbId = document.getElementById('reimbId').value;
+    let newStatusId = document.getElementById('reimbStatus').value;
+    let newResolver = JSON.parse(sessionStorage.user);
+    
+    let reimb = {
+        reimbId: newReimbId,
+        resolver: newResolver,
+        status:{
+            statusId: newStatusId
+        }
+    }
 
-// // function getNewReimb(){
-// //     let newReimbId = document.getElementById("reimbSelect").value;
-// //     let newStatus = document.getElementById("reimbStatus").value;
-// //     let newResolver = JSON.parse(sessionStorage.user);
+    let response = await fetch(URL + "reimbs/:reimb", {
+        method: "PUT",
+        body:JSON.stringify(reimb),
+        credentials:"include"
+    });
+    if(response.status===200){
+        console.log("reimbursement status updated successfully. ");
+    }else{
+        console.log("Something went wrong updating your reimbursement. ");
+    }
+}
 
-// //     return reimb;
-// // }
+
 
 // function approve(){
 //     //approve

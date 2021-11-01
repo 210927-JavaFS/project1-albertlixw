@@ -16,14 +16,22 @@ public class RoleDAOImpl implements RoleDAO{
     public List<Role> findAllRoles() {
         Session session = HibernateUtil.getSession();
 
-        return session.createQuery("FROM Role").list();
+        List<Role> list = session.createQuery("FROM Role").list();
+
+        HibernateUtil.closeSession();
+
+        return list;
     }
 
     @Override
     public Role findByRoleId(int id) {
         Session session = HibernateUtil.getSession();
 
-        return session.get(Role.class, id);
+        Role role = session.get(Role.class, id);
+
+        HibernateUtil.closeSession();
+
+        return role;
     }
 
     @Override

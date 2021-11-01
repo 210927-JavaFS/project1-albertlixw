@@ -11,23 +11,19 @@ import java.util.List;
 public class ReimbursementController implements Controller{
     private ReimbursementService reimbursementService = new ReimbursementService();
 
-    //TODO: get curr manager logged in
-    //TODO: get Reimb from input
-    //TODO: get statusId from input
-//    public Handler resolveReimb = (ctx) -> {
-//         if(ctx.req.getSession(false)!=null){
-//             Reimbursement reimb = ctx.bodyAsClass(Reimbursement.class);
-//             User manager = ctx.bodyAsClass(User.class);
-//             int statusId = ctx.bodyAsClass(Integer.class);
-//             if(reimbursementService.resolveTicket(manager, reimb, statusId)){
-//                ctx.status(200);
-//             }else{
-//                 ctx.status(400);
-//             }
-//         }else{
-//             ctx.status(401);
-//         }
-//    };
+    public Handler resolveReimb = (ctx) -> {
+         if(ctx.req.getSession(false)!=null){
+             Reimbursement reimb = ctx.bodyAsClass(Reimbursement.class);
+
+             if(reimbursementService.resolveTicket(reimb)){
+                ctx.status(200);
+             }else{
+                 ctx.status(400);
+             }
+         }else{
+             ctx.status(401);
+         }
+    };
 
     public Handler updateReimb = (ctx) -> {
         Reimbursement reimbursement = ctx.bodyAsClass(Reimbursement.class);
@@ -49,7 +45,6 @@ public class ReimbursementController implements Controller{
         }
     };
 
-    //TODO: USE THIS TO GET Reimb
     public Handler getReimb = (ctx) -> {
         if(ctx.req.getSession(false)!=null){
              try{
@@ -106,6 +101,8 @@ public class ReimbursementController implements Controller{
         app.post("/reimbs", this.addReimb);
         app.put("/reimbs", this.updateReimb);
         app.delete("/reimbs/:reimb", this.deleteReimb);
+
+        app.put("/reimbs/:reimb", this.resolveReimb);
 
     }
 }

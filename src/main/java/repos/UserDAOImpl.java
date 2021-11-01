@@ -31,18 +31,24 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public User findByUsername(String username) {
-        List<User> list;
-        try (Session session = HibernateUtil.getSession()) {
-//        System.out.println("Method Loaded");
-            list = session.createQuery("FROM User WHERE username = '" + username + "'").list();
+        try{
+
+            Session session = HibernateUtil.getSession();
+
+    
+            List<User> list = session.createQuery("FROM User WHERE username = '" + username + "'").list();
+
             HibernateUtil.closeSession();
 
             return list.isEmpty()?null:list.get(0);
-        }catch(HibernateException e){
+        }
+        catch(HibernateException e){
             e.printStackTrace();
         }
         return null;
     }
+
+
 //    //Fake login
 //    public User getByUsername(String username) {
 //        if(username.equals("asd")) {
@@ -51,6 +57,8 @@ public class UserDAOImpl implements UserDAO{
 //        }
 //        return null;
 //    }
+
+    
     @Override
     public boolean addUser(User user) {
         try{

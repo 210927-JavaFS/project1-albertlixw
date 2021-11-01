@@ -11,7 +11,7 @@ public class Reimbursement {
     private int reimbId;
     @Column(nullable = false)
     private int amount = 0;
-    @Column(nullable = false)
+    @Column(updatable = false, nullable = false)
     private Timestamp submitted;
     
     private Timestamp resolved;
@@ -19,14 +19,12 @@ public class Reimbursement {
     private String description;
     private Blob receipt; //stretch goal
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)   //fetch lazy: fetch from proxy wouldn't work.
-    //TODO: cancel comment
-//    @Column(nullable = false)//gotta fetch them eagerly.
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})   //fetch lazy: fetch from proxy wouldn't work.
+    @JoinColumn(name = "author_userid", nullable = false, updatable = false)//gotta fetch them eagerly.  //name = "author_userId",
     private User author;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(insertable = false, updatable = false) //name = "userId", 
-//    @Column(name = "resolver")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "resolver_userid") //name = "resolver_userId",
     private User resolver;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

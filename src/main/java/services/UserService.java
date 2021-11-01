@@ -1,6 +1,7 @@
 package services;
 
 import models.User;
+import models.UserDTO;
 import repos.UserDAO;
 import repos.UserDAOImpl;
 
@@ -14,23 +15,33 @@ public class UserService {
 //        return userDao.getByUsername(username);
 //    }
 
-     public List<User> findAllUsers(){
-         return userDao.findAllUsers();
-     }
+    public boolean login(UserDTO userDTO){
+        User user = userDao.findByUsername(userDTO.username);
 
-     public User findById(int id){
-         return userDao.findById(id);
-     }
+        if(user!=null && (userDTO.password.hashCode()==user.getPassword())){
+            return true;
+        }
 
-     public boolean addUser(User user){
-         return userDao.addUser(user);
-     }
+        return false;
+    }
 
-     public boolean updateUser(User user){
-        return userDao.updateUser(user);
-     }
+    public List<User> findAllUsers(){
+     return userDao.findAllUsers();
+ }
 
-     public boolean deleteUser(int userId){
+    public User findById(int id){
+     return userDao.findById(id);
+ }
+
+    public boolean addUser(User user){
+     return userDao.addUser(user);
+ }
+
+    public boolean updateUser(User user){
+    return userDao.updateUser(user);
+ }
+
+    public boolean deleteUser(int userId){
         return userDao.deleteUser(findById(userId));
      }
 

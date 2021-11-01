@@ -16,15 +16,21 @@ public class ReimbursementStatusDAOImpl implements ReimbursementStatusDAO{
     @Override
     public List<ReimbursementStatus> findAllReimbursementStatus() {
         Session session = HibernateUtil.getSession();
+        List<ReimbursementStatus> list = session.createQuery("FROM ReimbursementStatus").list();
+        HibernateUtil.closeSession();
 
-        return session.createQuery("FROM ReimbursementStatus").list();
+        return list;
     }
 
     @Override
     public ReimbursementStatus findById(int id) {
         Session session = HibernateUtil.getSession();
+        ReimbursementStatus status = session.get(ReimbursementStatus.class, id);
+        HibernateUtil.closeSession();
 
-        return session.get(ReimbursementStatus.class, id);    }
+
+        return status;
+    }
 
     @Override
     public boolean addReimbursementStatus(ReimbursementStatus reimbursementStatus) {

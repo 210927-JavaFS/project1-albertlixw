@@ -13,15 +13,18 @@ public class User {
     private int userId;
     @Column(unique = true, nullable = false)
     String username; // Unique constraints
+    @Column(nullable = false)
     private int password;
     @Column(unique = true, nullable = false)
     String email;
+    @Column(nullable = false)
     private String firstname;
+    @Column(nullable = false)
     private String lastname;
 
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "roleId")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "roleId", nullable = false)
     private Role role;
 //    private int roleId;
 
