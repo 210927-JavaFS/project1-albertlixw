@@ -9,6 +9,7 @@ import services.ReimbursementService;
 import java.util.List;
 
 public class ReimbursementController implements Controller{
+    
     private ReimbursementService reimbursementService = new ReimbursementService();
 
     public Handler resolveReimb = (ctx) -> {
@@ -110,12 +111,30 @@ public class ReimbursementController implements Controller{
         }
     };
 
+    public Handler getReimbByAuthor = (ctx) -> {
+        if(ctx.req.getSession(false)!=null){
+            try{
+                String idString = ctx.pathParam("username");
+//                int statusId = Integer.parseInt(idString);
+                List<Reimbursement> list = reimbursementService.findByReimbAuthorUsername(idString);
+                ctx.json(list);
+                ctx.status(200);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                ctx.status(406);
+            }
+        }else{
+            ctx.status(401);
+        }
+    };
+
     @Override
     public void addRoutes(Javalin app) {
         app.get("/reimbs", this.getAllReimbs);
         app.get("/reimbs/:reimb", this.getReimb);
-
         app.get("reimbs/:reimb/:status", this.getReimbByStatus);
+
+        app.get("reimbs/:reimb:/author/:username", this.getReimbByAuthor);
 
         app.post("/reimbs", this.addReimb);
         app.put("/reimbs", this.updateReimb);

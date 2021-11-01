@@ -16,6 +16,8 @@ public interface ReimbursementDAO {
 
     List<Reimbursement> findByReimbStatus(int statusId);
 
+    List<Reimbursement> findByReimbAuthorUsername(String username);
+
     boolean addReimbursement(Reimbursement reimbursement);
     boolean updateReimbursement(Reimbursement reimbursement);
     boolean deleteReimbursement(Reimbursement reimbursement);

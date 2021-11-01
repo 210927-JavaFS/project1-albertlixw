@@ -12,6 +12,7 @@ import utils.HibernateUtil;
 import java.util.List;
 
 public class ReimbursementDAOImpl implements ReimbursementDAO{
+    private static UserDAO userDAO = new UserDAOImpl();
 
     @Override
     public List<Reimbursement> findByReimbStatus(int statusId) {
@@ -21,6 +22,31 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 
 
             List<Reimbursement> list = session.createQuery("FROM Reimbursement WHERE statusId = '" + statusId + "'").list();
+
+            HibernateUtil.closeSession();
+
+            return list.isEmpty()?null:list;
+        }
+        catch(HibernateException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Reimbursement> findByReimbAuthorUsername(String username) {
+        try{
+
+            Session session = HibernateUtil.getSession();
+
+
+            User user = userDAO.findByUsername(username);
+            System.out.println(user);
+
+//            findByUsername closed session, so have to reopen
+            session = HibernateUtil.getSession();
+
+            List<Reimbursement> list = session.createQuery("FROM Reimbursement WHERE author_userid = " + user.getUserId()).list();
 
             HibernateUtil.closeSession();
 
