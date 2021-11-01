@@ -6,20 +6,25 @@ let reimbButton = document.getElementById('reimbButton');
 let addReimbButton = document.getElementById("addReimbButton");
 let loginButton = document.getElementById('loginButton');
 let getReimbIdButton = document.getElementById('getReimbIdButton');
-
 let approveButton = document.getElementById('approveButton');
+let getReimbStatusButton = document.getElementById('getReimbStatusButton');
+
+let getReimbOfAuthorButton = document.getElementById('getReimbOfAuthorButton');
 
 userButton.onclick = getUsers;
-reimbButton.onclick = getReimb;
+reimbButton.onclick = getAllReimbs;
 addReimbButton.onclick = addReimb; 
 loginButton.onclick = loginToApp;
 getReimbIdButton.onclick = getReimbById;
-
 approveButton.onclick = approveReimb;
+getReimbStatusButton.onclick = getReimbByStatus;
+
+getReimbOfAuthorButton.onclick = getReimbByAuthor;
 
 userButton.innerText = "Get All Users";
 reimbButton.innerText = "Show All Reimbursement Requests";
-getReimbIdButton.innerText = "Find your ticket!";
+getReimbIdButton.innerText = "Find this ticket!";
+getReimbStatusButton.innerText = "Find tickets of this status!";
 
 async function loginToApp(){
     let user = {
@@ -37,7 +42,7 @@ async function loginToApp(){
     if(response.status === 200){
         document.getElementsByClassName("formClass")[0].innerHTML = '';
         buttonRow.appendChild(userButton);
-            buttonRow.appendChild(reimbButton);
+        buttonRow.appendChild(reimbButton);
     }else{
         let para = document.createElement("p");
         para.setAttribute("style", "color:red")
@@ -82,7 +87,7 @@ function populateUsersTable(data){
     }
 }
 
-async function getReimb(){
+async function getAllReimbs(){
     let response = await fetch(URL + "reimbs", {credentials:"include"});
 
     if(response.status===200){
@@ -131,11 +136,43 @@ function populateReimbTable(data){
 }
 
 function convertTimestamp(unix_timestamp){
-    var date = new Date(unix_timestamp);
+    let date = new Date(unix_timestamp);
 
     return date;
 }
 
+
+async function getReimbByAuthor(){
+
+    let author = JSON.parse(sessionStorage.user);
+    let authorUsername = author.username;
+    let response = await fetch(URL + "reimbs/:reimb:/author/" + authorUsername, {credentials:"include"});
+
+    if(response.status===200){
+        let data = await response.json();
+        // console.log(data);
+        populateReimbTable(data);
+        // return data;
+    }else{
+        console.log("Reimbursements not available");
+    }
+}
+
+
+async function getReimbByStatus(){
+
+    let statusId = document.getElementById('findReimbStatus').value;
+    let response = await fetch(URL + "reimbs/:reimb/"+statusId, {credentials:"include"});
+
+    if(response.status===200){
+        let data = await response.json();
+        // console.log(data);
+        populateReimbTable(data);
+        // return data;
+    }else{
+        console.log("Reimbursements not available");
+    }
+}
 
 async function getReimbById(){
 

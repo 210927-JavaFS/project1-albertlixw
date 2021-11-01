@@ -28,7 +28,7 @@ public class App {
         ReimbursementType type2 = new ReimbursementType(2);
         ReimbursementType type3 = new ReimbursementType(3);
         ReimbursementType type4 = new ReimbursementType(4);
-        
+
         Role role1 = new Role(1);
         Role role2 = new Role (2);
 

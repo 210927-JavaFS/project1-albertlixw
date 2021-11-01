@@ -50,6 +50,16 @@ public class ReimbursementService {
         return reimbursementDAO.findAllReimbursement();
     }
 
+    public List<Reimbursement> findByReimbStatus(int statusId){
+
+        return reimbursementDAO.findByReimbStatus(statusId);
+    }
+
+    public List<Reimbursement> findByReimbAuthorUsername(String username){
+
+        return reimbursementDAO.findByReimbAuthorUsername(username);
+    }
+
     public Reimbursement findByReimbId(int id){
         return reimbursementDAO.findByReimbId(id);
     }

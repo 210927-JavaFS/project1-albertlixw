@@ -12,6 +12,48 @@ import utils.HibernateUtil;
 import java.util.List;
 
 public class ReimbursementDAOImpl implements ReimbursementDAO{
+    private static UserDAO userDAO = new UserDAOImpl();
+
+    @Override
+    public List<Reimbursement> findByReimbStatus(int statusId) {
+        try{
+
+            Session session = HibernateUtil.getSession();
+
+
+            List<Reimbursement> list = session.createQuery("FROM Reimbursement WHERE statusId = '" + statusId + "'").list();
+
+            HibernateUtil.closeSession();
+
+            return list.isEmpty()?null:list;
+        }
+        catch(HibernateException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Reimbursement> findByReimbAuthorUsername(String username) {
+        try{
+
+            User user = userDAO.findByUsername(username);
+            System.out.println(user);
+
+//            findByUsername closed session, so have to reopen/open after the other DAO method call. 
+            Session session = HibernateUtil.getSession();
+
+            List<Reimbursement> list = session.createQuery("FROM Reimbursement WHERE author_userid = " + user.getUserId()).list();
+
+            HibernateUtil.closeSession();
+
+            return list.isEmpty()?null:list;
+        }
+        catch(HibernateException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @Override
     public List<Reimbursement> findAllReimbursement() {
