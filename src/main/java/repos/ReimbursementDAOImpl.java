@@ -37,14 +37,11 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
     public List<Reimbursement> findByReimbAuthorUsername(String username) {
         try{
 
-            Session session = HibernateUtil.getSession();
-
-
             User user = userDAO.findByUsername(username);
             System.out.println(user);
 
-//            findByUsername closed session, so have to reopen
-            session = HibernateUtil.getSession();
+//            findByUsername closed session, so have to reopen/open after the other DAO method call. 
+            Session session = HibernateUtil.getSession();
 
             List<Reimbursement> list = session.createQuery("FROM Reimbursement WHERE author_userid = " + user.getUserId()).list();
 
