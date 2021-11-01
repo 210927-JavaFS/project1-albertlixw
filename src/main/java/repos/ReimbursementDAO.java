@@ -1,6 +1,7 @@
 package repos;
 
 import models.Reimbursement;
+import models.User;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public interface ReimbursementDAO {
     Reimbursement findByType(int typeid);
     Reimbursement findByStatus(int statusid);
 
+    List<Reimbursement> findByReimbStatus(int statusId);
 
     boolean addReimbursement(Reimbursement reimbursement);
     boolean updateReimbursement(Reimbursement reimbursement);

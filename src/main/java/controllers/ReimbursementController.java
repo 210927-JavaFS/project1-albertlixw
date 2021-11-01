@@ -61,8 +61,7 @@ public class ReimbursementController implements Controller{
              ctx.status(401);
         }
     };
-
-    //TODO: USE THIS to add reimb
+    
     public Handler addReimb = (ctx) -> {
         if(ctx.req.getSession(false)!=null){
             Reimbursement reimbursement = ctx.bodyAsClass(Reimbursement.class);
@@ -94,14 +93,33 @@ public class ReimbursementController implements Controller{
         }
     };
 
+    public Handler getReimbByStatus = (ctx) -> {
+        if(ctx.req.getSession(false)!=null){
+            try{
+                String idString = ctx.pathParam("status");
+                int statusId = Integer.parseInt(idString);
+                List<Reimbursement> list = reimbursementService.findByReimbStatus(statusId);
+                ctx.json(list);
+                ctx.status(200);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                ctx.status(406);
+            }
+        }else{
+            ctx.status(401);
+        }
+    };
+
     @Override
     public void addRoutes(Javalin app) {
         app.get("/reimbs", this.getAllReimbs);
         app.get("/reimbs/:reimb", this.getReimb);
+
+        app.get("reimbs/:reimb/:status", this.getReimbByStatus);
+
         app.post("/reimbs", this.addReimb);
         app.put("/reimbs", this.updateReimb);
         app.delete("/reimbs/:reimb", this.deleteReimb);
-
         app.put("/reimbs/:reimb", this.resolveReimb);
 
     }

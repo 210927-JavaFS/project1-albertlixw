@@ -14,6 +14,25 @@ import java.util.List;
 public class ReimbursementDAOImpl implements ReimbursementDAO{
 
     @Override
+    public List<Reimbursement> findByReimbStatus(int statusId) {
+        try{
+
+            Session session = HibernateUtil.getSession();
+
+
+            List<Reimbursement> list = session.createQuery("FROM Reimbursement WHERE statusId = '" + statusId + "'").list();
+
+            HibernateUtil.closeSession();
+
+            return list.isEmpty()?null:list;
+        }
+        catch(HibernateException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public List<Reimbursement> findAllReimbursement() {
         Session session = HibernateUtil.getSession();
         List<Reimbursement> list = session.createQuery("FROM Reimbursement").list();
