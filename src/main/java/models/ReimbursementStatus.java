@@ -8,8 +8,8 @@ import java.util.Objects;
 @Entity
 public class ReimbursementStatus {
     @Id
-//    @Column(name = "status_id")
     private int statusId;
+    @Column(updatable = false, nullable = false)
     private String status = "pending";
 
     public ReimbursementStatus(int statusId) {

@@ -1,5 +1,6 @@
 package models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Objects;
@@ -8,6 +9,7 @@ import java.util.Objects;
 public class ReimbursementType {
     @Id
     private int typeId;
+    @Column(updatable = false, nullable = false)
     private String type;
 
     public ReimbursementType(int typeId) {

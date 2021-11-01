@@ -34,13 +34,13 @@ public class ReimbursementService {
 
         //get statusId from inputReimb
         ReimbursementStatus status = new ReimbursementStatus(inputReimb.getStatus().getStatusId());
-        System.out.println("input status: " + status);
+//        System.out.println("input status: " + status);
 
         reimb.setResolver(manager);
         reimb.setResolved();
         reimb.setStatus(status);
         
-        System.out.println("after resolved: " + reimb);
+//        System.out.println("after resolved: " + reimb);
 
         reimbursementDAO.updateReimbursement(reimb);
         return true;

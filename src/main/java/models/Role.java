@@ -3,6 +3,7 @@ package models;
 import repos.RoleDAO;
 import repos.RoleDAOImpl;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Objects;
@@ -19,6 +20,7 @@ public class Role {
 
     @Id
     private int roleId;
+    @Column(updatable = false, nullable = false)
     private String role;  //varchar2(10)
 
     public Role(int roleId) {
