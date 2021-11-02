@@ -16,7 +16,7 @@ public class UserService {
 //    }
 
     public boolean login(UserDTO userDTO){
-        User user = userDao.findByUsername(userDTO.username);
+        User user = findByUsername(userDTO.username);
 
         if(user!=null && (userDTO.password.hashCode()==user.getPassword())){
             return true;
@@ -25,13 +25,18 @@ public class UserService {
         return false;
     }
 
+    public User findByUsername(String username){
+        return userDao.findByUsername(username);
+    }
+
+    public User findById(int id){
+        return userDao.findById(id);
+    }
+
     public List<User> findAllUsers(){
      return userDao.findAllUsers();
  }
 
-    public User findById(int id){
-     return userDao.findById(id);
- }
 
     public boolean addUser(User user){
      return userDao.addUser(user);
