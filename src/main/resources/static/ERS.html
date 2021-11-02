@@ -18,15 +18,65 @@
             <label for="password">Password</label>
             <input type="password" id = "password" name = "password">
         </form>
-        <button id = "loginButton" class = "btn btn-danger">Login</button>
+        <button id = "loginButton" class = "btn btn-danger" onclick="loginToApp()">Login</button>
 
     </div>
-    <div class = "row" id = "buttonRow">
+    <div class = "row" id = "allUsersButtonRow">
+
+        <button class = "btn btn-primary" id = "getReimbOfAuthorButton" onclick = "getReimbByAuthor()">Find all tickets that belongs to you! Woohoo! </button>
+
+        <form class="form-control" id = "addReimbForm">
+            <label for="amount">$ Amount</label>
+            <input type="text" id = "amount" name = "amount" required>
+            <label for="description">Description</label>
+            <input type="text" id = "description" name = "description">
+    
+            <label for="typeId">Type Id of Reimb(1: Lodging, 2: Travel, 3: Food, 4: Other)</label>
+            <input type="number" id = "typeId" name = "typeId" value = "4" required>
+     
+        </form>
+    
+        <button class = "btn btn-primary" id = "addReimbButton" onclick="addReimb()">Add your Reimbursement</button>
         
-        <button id = "userButton" class = "btn btn-success">Display all Users</button>
-        <button id = "reimbButton" class = "btn btn-success">Display all Reimbursement Requests</button>
 
     </div>
+
+   
+    <div class="row", id = "managerButtonRow">
+
+        <button class = "btn btn-success" id = "userButton" onclick="getUsers()">Find tickets of this status!</button>
+        <button class = "btn btn-success" id = "reimbButton" onclick="getAllReimbs()">Find tickets of this status!</button>
+
+
+        <form class="form-control">
+            <label for="findReimbStatus">Select tickets under status: 1: pending, 2: approved, 3: denied. </label>
+            <input type="text" id = "findReimbStatus" name = "findReimbStatus">
+    
+        </form>
+    
+        <button class = "btn btn-success" id = "getReimbStatusButton" onclick="getReimbByStatus()">Find tickets of this status!</button>
+    
+    
+        <form class="form-control">
+            <label for="reimbId">Select ticket by reimbursement Id</label>
+            <input type="text" id = "reimbId" name = "reimbId">
+    
+        </form>
+    
+        <button class = "btn btn-success" id = "getReimbIdButton" onclick="getReimbById()">Find this ticket!</button>
+    
+    
+        <form class="form-control">
+            <label for="reimbStatus">Do you approve or deny this ticket, dear Finance Manager? 1: pending, 2: approve, 3: deny</label>
+            <input type="text" id = "reimbStatus" name = "reimbStatus">
+            
+        </form>
+    
+        
+        <button class = "btn btn-success" id = "approveButton" onclick="approveReimb()">Approve Reimbursement</button>
+    
+    </div>
+
     <table class = "table">
         <thead>
             <tr>
@@ -74,53 +124,6 @@
     </table>
 
     <br><br>
-
-
-    
-
-    <form class="form-control">
-        <label for="amount">$ Amount</label>
-        <input type="text" id = "amount" name = "amount">
-        <label for="description">Description</label>
-        <input type="text" id = "description" name = "description">
-
-         <label for="typeId">Type Id of Reimb(1: Lodging, 2: Travel, 3: Food, 4: Other)</label>
-        <input type="number" id = "typeId" name = "typeId">
- 
-    </form>
-
-    <button class = "btn btn-primary" id = "addReimbButton">Add your Reimbursement</button>
-    
-    <button class = "btn btn-primary" id = "getReimbOfAuthorButton">Find all tickets that belongs to you! Woohoo! </button>
-
-
-    <form class="form-control">
-        <label for="findReimbStatus">Select tickets under status: 1: pending, 2: approved, 3: denied. </label>
-        <input type="text" id = "findReimbStatus" name = "findReimbStatus">
-
-    </form>
-
-    <button class = "btn btn-primary" id = "getReimbStatusButton">Find tickets of this status!</button>
-
-
-    <form class="form-control">
-        <label for="reimbId">Select ticket by reimbursement Id</label>
-        <input type="text" id = "reimbId" name = "reimbId">
-
-    </form>
-
-    <button class = "btn btn-primary" id = "getReimbIdButton">Find this ticket!</button>
-
-
-    <form class="form-control">
-        <label for="reimbStatus">Do you approve or deny this ticket, dear Finance Manager? 1: pending, 2: approve, 3: deny</label>
-        <input type="text" id = "reimbStatus" name = "reimbStatus">
-        
-    </form>
-
-    
-    <button class = "btn btn-primary" id = "approveButton">Approve Reimbursement</button>
-
 
     <script src="ERS.js"></script>
 </body>

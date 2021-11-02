@@ -40,6 +40,23 @@ public class UserController implements Controller{
         }
     };
 
+    public Handler getUserByUsername = (ctx) -> {
+        if(ctx.req.getSession(false)!=null){
+            try{
+                String idString = ctx.pathParam("username");
+//                System.out.println(idString);
+                User user = userService.findByUsername(idString);
+                ctx.json(user);
+                ctx.status(200);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                ctx.status(406);
+            }
+        }else{
+            ctx.status(401);
+        }
+    };
+
     public Handler addUser = (ctx) -> {
         if(ctx.req.getSession(false)!=null){
             User user = ctx.bodyAsClass(User.class);
@@ -96,9 +113,13 @@ public class UserController implements Controller{
     public void addRoutes(Javalin app) {
         app.get("/users", this.getAllUsers);
         app.get("/users/:user", this.getUser);
+        //":" means variable, without it, it becomes a address
+        app.get("/users/user/:username", this.getUserByUsername);
+
         app.post("/users", this.addUser);
         app.put("/users", this.updateUser);
         app.delete("/users/:user", this.deleteUser);
+
         app.post("/login", this.loginAttempt);
     }
 }

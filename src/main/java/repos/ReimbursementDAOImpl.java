@@ -1,19 +1,24 @@
 package repos;
 
+import controllers.ReimbursementController;
 import models.*;
 //import models.ReimbursementType;
 //import models.Role;
 //import models.User;
 import org.hibernate.HibernateException;
+import org.hibernate.PropertyValueException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.slf4j.ILoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utils.HibernateUtil;
 
 import java.util.List;
 
 public class ReimbursementDAOImpl implements ReimbursementDAO{
     private static UserDAO userDAO = new UserDAOImpl();
-
+    private static final Logger log = LoggerFactory.getLogger(ReimbursementDAOImpl.class);
     @Override
     public List<Reimbursement> findByReimbStatus(int statusId) {
         try{
@@ -102,6 +107,10 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
             transaction.commit();
             HibernateUtil.closeSession();
             return true;
+        }catch(PropertyValueException e){
+            e.printStackTrace();
+            log.error("User tried to insert null reimbursement. " + e.getMessage());
+            return false;
         }catch (HibernateException e){
             e.printStackTrace();
             return false;

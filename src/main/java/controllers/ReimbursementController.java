@@ -132,14 +132,14 @@ public class ReimbursementController implements Controller{
     public void addRoutes(Javalin app) {
         app.get("/reimbs", this.getAllReimbs);
         app.get("/reimbs/:reimb", this.getReimb);
-        app.get("reimbs/:reimb/:status", this.getReimbByStatus);
+        app.get("reimbs/reimb/:status", this.getReimbByStatus);
 
-        app.get("reimbs/:reimb:/author/:username", this.getReimbByAuthor);
+        app.get("reimbs/reimb/author/:username", this.getReimbByAuthor);
 
         app.post("/reimbs", this.addReimb);
         app.put("/reimbs", this.updateReimb);
         app.delete("/reimbs/:reimb", this.deleteReimb);
-        app.put("/reimbs/:reimb", this.resolveReimb);
+        app.put("/reimbs/reimb", this.resolveReimb);
 
     }
 }
