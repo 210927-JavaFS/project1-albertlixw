@@ -42,8 +42,7 @@ public class ReimbursementService {
         
 //        System.out.println("after resolved: " + reimb);
 
-        reimbursementDAO.updateReimbursement(reimb);
-        return true;
+        return reimbursementDAO.updateReimbursement(reimb);
     }
 
     public List<Reimbursement> findAllReimbursement(){

@@ -1,8 +1,9 @@
 const URL = "http://localhost:8081/"
 
 // let buttonRow = document.getElementById("buttonRow");
-let allUsersButtonRow = document.getElementById("allUsersButtonRow");
-let managerButtonRow = document.getElementById("managerButtonRow");
+let root = document.getElementById('root');
+let allUsersButtonForm = document.getElementById("allUsersButtonForm");
+let managerButtonsForm = document.getElementById("managerButtonsForm");
 
 // let addReimbForm = document.getElementById('addReimbForm');
 let userButton = document.getElementById('userButton');
@@ -47,6 +48,7 @@ reimbButton.innerText = "Show All Reimbursement Requests";
 getReimbIdButton.innerText = "Find this ticket!";
 getReimbStatusButton.innerText = "Find tickets of this status!";
 
+// window.onload
 
 async function getUserByUsername(username){
     let response = await fetch(URL + "users/user/" + username, {credentials:"include"});
@@ -92,16 +94,19 @@ async function setEnvironment(){
     console.log(typeof (userParsed.role.roleId));
     let roleId = userParsed.role.roleId;
     document.getElementsByClassName("formClass")[0].innerHTML = "";
-    allUsersButtonRow.appendChild(getReimbOfAuthorButton);
-    allUsersButtonRow.appendChild(addReimbForm);
-    allUsersButtonRow.appendChild(addReimbButton);
+    root.appendChild(allUsersButtonForm);
+    
         if(roleId === 2){
+            console.log(roleId);
             document.getElementsByClassName("formClass")[0].innerHTML = "";
-            managerButtonRow.appendChild(userButton);
-            managerButtonRow.appendChild(reimbButton);
-            managerButtonRow.appendChild(getReimbIdButton);
-            managerButtonRow.appendChild(approveButton);
-            managerButtonRow.appendChild(getReimbStatusButton);
+            root.appendChild(managerButtonsForm);
+            // managerButtonRow.appendChild(userButton);
+            // managerButtonRow.appendChild(reimbButton);
+            // managerButtonRow.appendChild(getReimbIdButton);
+            // managerButtonRow.appendChild(approveButton);
+            // managerButtonRow.appendChild(getReimbStatusButton);
+        }else{
+            document.getElementById("managerButtonsForm").innerText = '';
         }
 }
 
