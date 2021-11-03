@@ -41,7 +41,7 @@ public class ReimbursementService {
         reimb.setStatus(status);
         
 //        System.out.println("after resolved: " + reimb);
-
+        log.info("Ticket resolved. reimbId: " + reimb.getReimbId());
         return reimbursementDAO.updateReimbursement(reimb);
     }
 
@@ -66,12 +66,15 @@ public class ReimbursementService {
     public boolean addReimbursement(Reimbursement reimbursement){
         User author = userDAO.findByUsername(reimbursement.getAuthor().getUsername());
         Reimbursement initReimb = new Reimbursement(reimbursement.getAmount(), reimbursement.getDescription(), author, new ReimbursementType(reimbursement.getType().getTypeId()));
+        log.info("new reimbTicket created. " + initReimb);
         return reimbursementDAO.addReimbursement(initReimb);
     }
     public boolean updateReimbursement(Reimbursement reimbursement){
+        log.info("A reimb has been updated: "+reimbursement);
         return reimbursementDAO.updateReimbursement(reimbursement);
     }
     public boolean deleteReimbursement(int id){
+        log.info("reimbId: "+ id + " has been deleted");
         return reimbursementDAO.deleteReimbursement(findByReimbId(id));
     }
 
