@@ -10,7 +10,7 @@ import repos.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserServiceTest {
-    private static UserService userService = new UserService();
+    private static final UserService userService = new UserService();
     @BeforeEach
     void setUp() {
 
@@ -34,6 +34,12 @@ class UserServiceTest {
         ReimbursementType type2 = new ReimbursementType(2);
         ReimbursementType type3 = new ReimbursementType(3);
         ReimbursementType type4 = new ReimbursementType(4);
+        ReimbursementTypeDAO reimbursementTypeDAO = new ReimbursementTypeDAOImpl();
+
+        reimbursementTypeDAO.addReimbursementType(type1);
+        reimbursementTypeDAO.addReimbursementType(type2);
+        reimbursementTypeDAO.addReimbursementType(type3);
+        reimbursementTypeDAO.addReimbursementType(type4);
 
         Role role1 = new Role(1);
         Role role2 = new Role (2);
@@ -50,11 +56,11 @@ class UserServiceTest {
         userDAO.addUser(asd);
         userDAO.addUser(manager);
         userDAO.addUser(steve);
-
-        reimbursementDAO.addReimbursement(new Reimbursement(100, "Lodging", asd, type1));
-        reimbursementDAO.addReimbursement(new Reimbursement(200, "Travel", manager, type2));
-        reimbursementDAO.addReimbursement(new Reimbursement(300, "Food", steve, type3));
-        reimbursementDAO.addReimbursement(new Reimbursement(400, "Other", steve, type4));
+//
+//        reimbursementDAO.addReimbursement(new Reimbursement(100, "Lodging", asd, type1));
+//        reimbursementDAO.addReimbursement(new Reimbursement(200, "Travel", manager, type2));
+//        reimbursementDAO.addReimbursement(new Reimbursement(300, "Food", steve, type3));
+//        reimbursementDAO.addReimbursement(new Reimbursement(400, "Other", steve, type4));
 
     }
 
@@ -101,7 +107,8 @@ class UserServiceTest {
 
     @Test
     void deleteUser() {
-        userService.deleteUser(userService.findByUsername("Manager2").getUserId());
-        assertEquals(userService.findAllUsers().size(), 2);
+        int id = userService.findByUsername("Manager2").getUserId();
+        userService.deleteUser(id);
+        assertNull(userService.findById(id));
     }
 }

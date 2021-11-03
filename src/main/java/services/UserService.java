@@ -15,10 +15,6 @@ public class UserService {
     private UserDAO userDao = new UserDAOImpl();
     private static final Logger log = LoggerFactory.getLogger(ReimbursementController.class);
 
-//    public User getByUserName(String username){
-//        return userDao.getByUsername(username);
-//    }
-
     public boolean login(UserDTO userDTO){
         User user = findByUsername(userDTO.username);
 
