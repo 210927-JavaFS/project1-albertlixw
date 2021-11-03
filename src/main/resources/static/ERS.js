@@ -5,50 +5,29 @@ let root = document.getElementById('root');
 let allUsersButtonForm = document.getElementById("allUsersButtonForm");
 let managerButtonsForm = document.getElementById("managerButtonsForm");
 
-// let addReimbForm = document.getElementById('addReimbForm');
 let userButton = document.getElementById('userButton');
 let reimbButton = document.getElementById('reimbButton');
 let addReimbButton = document.getElementById("addReimbButton");
 let loginButton = document.getElementById('loginButton');
 let getReimbIdButton = document.getElementById('getReimbIdButton');
-let approveButton = document.getElementById('approveButton');
 let getReimbStatusButton = document.getElementById('getReimbStatusButton');
 
 let getReimbOfAuthorButton = document.getElementById('getReimbOfAuthorButton');
 
-// //creating manager form
-// let addReimbForm = document.createElement('FORM');
-// addReimbForm.textContent = 'addReimbForm';
-// amountTB=document.createElement('INPUT');
-// amountTB.id = 'amount';
-// amountTB.placeholder = "0";
-// amountTB.required = true;
-// addReimbForm.appendChild(amountTB);
-// var input = document.createElement("input");
-// input.type = "text";
-// input.className = "css-class-name"; // set the CSS class
-// container.appendChild(input); // put it into the DOM
-
-
-// The only one that still works without trouble after setEnvironment
-// loginButton.onclick = loginToApp;
-
-//manager only
-// userButton.onclick = getUsers;
-// reimbButton.onclick = getAllReimbs;
-// getReimbIdButton.onclick = getReimbById;
-// approveButton.onclick = approveReimb;
-// getReimbStatusButton.onclick = getReimbByStatus;
-
-// addReimbButton.onclick = addReimb; 
-// getReimbOfAuthorButton.onclick = getReimbByAuthor;
+let denyButton = document.getElementById('denyButton');
+let approveButton = document.getElementById('approveButton');
 
 userButton.innerText = "Get All Users";
 reimbButton.innerText = "Show All Reimbursement Requests";
 getReimbIdButton.innerText = "Find this ticket!";
 getReimbStatusButton.innerText = "Find tickets of this status!";
+approveButton.innerText = "Approve this ticket";
+denyButton.innerText = "Deny this ticket";
 
-// window.onload
+
+function clearDiv(divId){
+    document.getElementById(divId).innerText = '';
+}
 
 async function getUserByUsername(username){
     let response = await fetch(URL + "users/user/" + username, {credentials:"include"});
@@ -58,7 +37,6 @@ async function getUserByUsername(username){
         //saves user to sessionStorage
         sessionStorage.setItem('user', JSON.stringify(data));
 
-        // return data;
     }else{
         console.log("Failed to find your user. ")
     }
@@ -79,8 +57,8 @@ async function loginToApp(){
     });
     if(response.status === 200){
         document.getElementsByClassName("formClass")[0].innerHTML = '';
-        setEnvironment();
-        getUserByUsername(user.username);
+        await getUserByUsername(user.username);
+        await setEnvironment();
     }else{
         let para = document.createElement("p");
         para.setAttribute("style", "color:red")
@@ -90,24 +68,21 @@ async function loginToApp(){
 }
 
 async function setEnvironment(){
+    clearDiv("root");
     let userParsed = JSON.parse(sessionStorage.getItem('user'));
-    console.log(typeof (userParsed.role.roleId));
+    // console.log(typeof (userParsed.role.roleId));
     let roleId = userParsed.role.roleId;
-    document.getElementsByClassName("formClass")[0].innerHTML = "";
-    root.appendChild(allUsersButtonForm);
-    
-        if(roleId === 2){
-            console.log(roleId);
-            document.getElementsByClassName("formClass")[0].innerHTML = "";
-            root.appendChild(managerButtonsForm);
-            // managerButtonRow.appendChild(userButton);
-            // managerButtonRow.appendChild(reimbButton);
-            // managerButtonRow.appendChild(getReimbIdButton);
-            // managerButtonRow.appendChild(approveButton);
-            // managerButtonRow.appendChild(getReimbStatusButton);
-        }else{
-            document.getElementById("managerButtonsForm").innerText = '';
-        }
+    // document.getElementsByClassName("formClass")[0].innerHTML = "";
+    if(roleId >= 1){
+        root.appendChild(allUsersButtonForm);
+    }
+    if(roleId >= 2){
+        // document.getElementsByClassName("formClass")[0].innerHTML = "";
+        root.appendChild(managerButtonsForm);
+
+    }else{
+        clearDiv("managerButtonsForm");
+    }
 }
 
 async function getUsers(){
@@ -233,7 +208,9 @@ async function getReimbByStatus(){
     let userRoleId = JSON.parse(sessionStorage.getItem('user')).role.roleId;
 
     if(userRoleId>=2){
-        let statusId = document.getElementById('findReimbStatus').value;
+        // let statusId = document.getElementById('findReimbStatus').value;
+        let statusId = document.querySelector('input[name="statusRadio"]:checked').value;
+
         let response = await fetch(URL + "reimbs/reimb/"+statusId, {credentials:"include"});
 
         if(response.status===200){
@@ -314,6 +291,8 @@ function getNewReimb(){
     return reimb;
 }
 
+// call_locker = () => { addReimb(); return false; }
+
 async function addReimb(){
     let reimb = getNewReimb();
     let response = await fetch(URL + "reimbs", {
@@ -327,13 +306,14 @@ async function addReimb(){
     }else{
         console.log("Something went wrong creating your reimbursement. ");
     }
-
+    
 }
 
 
-async function approveReimb(){
+
+async function resolve(newStatusId){
     let newReimbId = document.getElementById('reimbId').value;
-    let newStatusId = document.getElementById('reimbStatus').value;
+    // let newStatusId = document.getElementById('reimbStatus').value;
     let newResolver = JSON.parse(sessionStorage.user);
     
     let reimb = {
@@ -356,18 +336,10 @@ async function approveReimb(){
     }
 }
 
+function approveReimb(){
+    resolve(2);
+}
 
-
-// function approve(){
-//     //approve
-//         //get user.role
-//         //Current user from cookie
-//         //or store inputted username in session storage
-//         //pull out from session storage
-//         //Author expects obj
-
-//         //findByUsername, send it back. 
-
-//     //if user.roleId>=2
-//     //get input: approve/deny
-// }
+function denyReimb(){
+    resolve(3);
+}
