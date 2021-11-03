@@ -8767,3 +8767,69 @@ java.lang.IllegalArgumentException: Parameter specified as non-null is null: met
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 23:32:25.255 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:35:20.479 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:35:24.289 [] [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 23505
+01:35:24.290 [] [main] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - ERROR: duplicate key value violates unique constraint "uk_6dotkott2kjsp8vw4d0m25fb7"
+  Detail: Key (email)=(steve@123.com) already exists.
+01:35:24.303 [] [main] ERROR org.hibernate.AssertionFailure - HHH000099: an assertion failure occurred (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: null id in models.User entry (don't flush the Session after an exception occurs)
+01:35:24.308 [] [main] ERROR org.hibernate.AssertionFailure - HHH000099: an assertion failure occurred (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: null id in models.User entry (don't flush the Session after an exception occurs)
+01:35:24.314 [] [main] ERROR org.hibernate.AssertionFailure - HHH000099: an assertion failure occurred (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: null id in models.User entry (don't flush the Session after an exception occurs)
+01:35:24.320 [] [main] ERROR org.hibernate.AssertionFailure - HHH000099: an assertion failure occurred (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: null id in models.User entry (don't flush the Session after an exception occurs)
+01:37:00.165 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:37:03.764 [] [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 23505
+01:37:03.764 [] [main] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - ERROR: duplicate key value violates unique constraint "uk_6dotkott2kjsp8vw4d0m25fb7"
+  Detail: Key (email)=(steve@123.com) already exists.
+01:37:03.776 [] [main] ERROR org.hibernate.AssertionFailure - HHH000099: an assertion failure occurred (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: null id in models.User entry (don't flush the Session after an exception occurs)
+01:37:03.779 [] [main] ERROR org.hibernate.AssertionFailure - HHH000099: an assertion failure occurred (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: null id in models.User entry (don't flush the Session after an exception occurs)
+01:37:03.782 [] [main] ERROR org.hibernate.AssertionFailure - HHH000099: an assertion failure occurred (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: null id in models.User entry (don't flush the Session after an exception occurs)
+01:37:03.786 [] [main] ERROR org.hibernate.AssertionFailure - HHH000099: an assertion failure occurred (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: null id in models.User entry (don't flush the Session after an exception occurs)
+01:38:16.940 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:40:03.331 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:40:14.700 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:40:46.714 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:40:50.188 [] [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 23503
+01:40:50.188 [] [main] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - ERROR: update or delete on table "users" violates foreign key constraint "fk53cqs0isy5focon06nye0isls" on table "reimbursement"
+  Detail: Key (userid)=(2) is still referenced from table "reimbursement".
+01:41:26.506 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:41:34.925 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:43:01.805 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:43:59.564 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:44:53.454 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:47:33.369 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:49:44.330 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:50:20.903 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:51:05.791 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:52:50.223 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:57:23.327 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+01:59:31.339 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+02:00:19.318 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+02:00:31.375 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+02:00:34.811 [] [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 23503
+02:00:34.811 [] [main] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - ERROR: update or delete on table "reimbursementstatus" violates foreign key constraint "fktam8idbk639j8cf5f8xlkv9to" on table "reimbursement"
+  Detail: Key (statusid)=(1) is still referenced from table "reimbursement".
+02:02:49.732 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+02:02:52.096 [] [main] WARN  o.h.a.i.UnresolvedEntityInsertActions - HHH000437: Attempting to save one or more entities that have a non-nullable association with an unsaved transient entity. The unsaved transient entity must be saved in an operation prior to saving these dependent entities.
+	Unsaved transient entity: ([models.ReimbursementType#1])
+	Dependent entities: ([[models.Reimbursement#<null>]])
+	Non-nullable association(s): ([models.Reimbursement.type])
+02:04:47.098 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+02:04:49.424 [] [main] WARN  o.h.a.i.UnresolvedEntityInsertActions - HHH000437: Attempting to save one or more entities that have a non-nullable association with an unsaved transient entity. The unsaved transient entity must be saved in an operation prior to saving these dependent entities.
+	Unsaved transient entity: ([models.ReimbursementType#1])
+	Dependent entities: ([[models.Reimbursement#<null>]])
+	Non-nullable association(s): ([models.Reimbursement.type])
+02:04:57.508 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+02:05:01.041 [] [main] WARN  o.h.a.i.UnresolvedEntityInsertActions - HHH000437: Attempting to save one or more entities that have a non-nullable association with an unsaved transient entity. The unsaved transient entity must be saved in an operation prior to saving these dependent entities.
+	Unsaved transient entity: ([models.ReimbursementType#1])
+	Dependent entities: ([[models.Reimbursement#<null>]])
+	Non-nullable association(s): ([models.Reimbursement.type])
+02:06:31.396 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+02:06:33.884 [] [main] WARN  o.h.a.i.UnresolvedEntityInsertActions - HHH000437: Attempting to save one or more entities that have a non-nullable association with an unsaved transient entity. The unsaved transient entity must be saved in an operation prior to saving these dependent entities.
+	Unsaved transient entity: ([models.ReimbursementType#1])
+	Dependent entities: ([[models.Reimbursement#<null>]])
+	Non-nullable association(s): ([models.Reimbursement.type])
+02:07:32.354 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+02:07:34.844 [] [main] WARN  o.h.a.i.UnresolvedEntityInsertActions - HHH000437: Attempting to save one or more entities that have a non-nullable association with an unsaved transient entity. The unsaved transient entity must be saved in an operation prior to saving these dependent entities.
+	Unsaved transient entity: ([models.ReimbursementType#1])
+	Dependent entities: ([[models.Reimbursement#<null>]])
+	Non-nullable association(s): ([models.Reimbursement.type])
+02:09:57.642 [] [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
