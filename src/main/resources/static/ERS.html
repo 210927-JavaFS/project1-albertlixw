@@ -35,17 +35,15 @@
                 <input type="text" id = "description" name = "description" />
         
                 <label for="typeId">Type Id of Reimb(1: Lodging, 2: Travel, 3: Food, 4: Other)</label>
-                <button class="dropbtn">Dropdown</button>
-                <div class = "dropdown-content">
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                </div>
-                <input type="number" id = "typeId" name = "typeId" value = "4" required />
-    
+                <select name="types" id="selectTypeIds">
+                    <option value="1">1: Lodging</option>
+                    <option value="2">2: Travel</option>
+                    <option value="3">3: Food</option>
+                    <option value="4">4: Other</option>
+                </select>                
+                <!-- <input type="number" id = "typeId" name = "typeId" value = "4" required /> -->
+                <button class = "btn btn-primary" id = "addReimbButton" type = "button" onclick="addReimb()">Add your Reimbursement</button>
             </form>
-            <button class = "btn btn-primary" id = "addReimbButton" type = "button" onclick="addReimb()">Add your Reimbursement</button>
 
             
     

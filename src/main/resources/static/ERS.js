@@ -11,11 +11,11 @@ let addReimbButton = document.getElementById("addReimbButton");
 let loginButton = document.getElementById('loginButton');
 let getReimbIdButton = document.getElementById('getReimbIdButton');
 let getReimbStatusButton = document.getElementById('getReimbStatusButton');
-
 let getReimbOfAuthorButton = document.getElementById('getReimbOfAuthorButton');
 
 let denyButton = document.getElementById('denyButton');
 let approveButton = document.getElementById('approveButton');
+
 
 userButton.innerText = "Get All Users";
 reimbButton.innerText = "Show All Reimbursement Requests";
@@ -276,14 +276,15 @@ function getNewReimb(){
     let newAmount = document.getElementById("amount").value;
     let newDescription = document.getElementById("description").value;
     let newAuthor = JSON.parse(sessionStorage.user);
-    let newTypeId = document.getElementById("typeId").value;
+    // let newTypeId = document.getElementById("typeId").value;
+    let dropDownTypeValue = document.getElementById('selectTypeIds').value;
 
     let reimb = {
         amount:newAmount, 
         description:newDescription,
         author: newAuthor,
         type: {
-            typeId: newTypeId
+            typeId: dropDownTypeValue
             // type: "Other"
         }
     }
