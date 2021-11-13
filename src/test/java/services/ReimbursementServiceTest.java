@@ -81,7 +81,7 @@ class ReimbursementServiceTest {
 
     @Test
     void findByReimbAuthorUsername() {
-        assertEquals(2, reimbService.findByReimbAuthorUsername("alex").size());
+        assertEquals(1, reimbService.findByReimbAuthorUsername("Manager2").size());
     }
 
     @Test
@@ -111,7 +111,7 @@ class ReimbursementServiceTest {
     void addReimbursement() {
         Reimbursement reimb = reimbService.findByReimbId(1);
         reimbService.addReimbursement(new Reimbursement(1000, "Lodging", reimb.getAuthor(), reimb.getType()));
-        assertEquals(reimbService.findAllReimbursement().size(), 5);
+        assertNotNull(reimbService.findByReimbId(5));
     }
 
     @Test
