@@ -65,7 +65,7 @@ Employees must select the type of reimbursement as: LODGING, TRAVEL, FOOD, or OT
    * Enter ticketId, then find the ticket by its id. Then approve or deny the ticket found with a click of a button. 
 
 ![](./imgs/findATicket.jpg)
-
+* Page Overview
 ![](./imgs/overview.jpg)
 
 <!-- **Contributors**
