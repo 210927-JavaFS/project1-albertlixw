@@ -60,8 +60,8 @@ Employees must select the type of reimbursement as: LODGING, TRAVEL, FOOD, or OT
 * Manager only functions: 
 ![](./imgs/findATicket.jpg)
 * * Get All Users and Show All Reimbursements can show all solvled and pending tickets of the past or present, and all registered users in the system. 
-* * Find all tickets of a certain status from selected radio button. 
-* * Enter ticketId, then find the ticket by its id. Then approve or deny the ticket found with a click of a button. 
+   * Find all tickets of a certain status from selected radio button. 
+   * Enter ticketId, then find the ticket by its id. Then approve or deny the ticket found with a click of a button. 
 ![](./imgs/overview.jpg)
 
 <!-- **Contributors**
