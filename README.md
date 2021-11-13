@@ -66,6 +66,6 @@ Manager only functions:
 
 <!-- **Contributors**
 Me -->
-
+<!-- 
 **License**
-None
+None -->
