@@ -54,15 +54,15 @@ Employees must select the type of reimbursement as: LODGING, TRAVEL, FOOD, or OT
 * Run app, go to http://localhost:8081/ERS.html
 * Enter Username and password of a Finance Manager to test all the functions, as employees have limited functions. 
 * Enter amount and select type of reimbursement from drop down list, and click "Add your Reimbursement" to submit a ticket. 
-* ![](./imgs/addingReimb.jpg)
+![](./imgs/addingReimb.jpg)
 * If you're not a manager, click the top blue button to find all tickets that belongs to the user that just logged in. 
 
 * Manager only functions: 
-* ![](./imgs/findATicket.jpg)
+![](./imgs/findATicket.jpg)
 * * Get All Users and Show All Reimbursements can show all solvled and pending tickets of the past or present, and all registered users in the system. 
 * * Find all tickets of a certain status from selected radio button. 
 * * Enter ticketId, then find the ticket by its id. Then approve or deny the ticket found with a click of a button. 
-* ![](./imgs/overview.jpg)
+![](./imgs/overview.jpg)
 
 <!-- **Contributors**
 Me -->
