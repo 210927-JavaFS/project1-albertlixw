@@ -28,10 +28,10 @@ public class Reimbursement {
     @JoinColumn(name = "resolver_userid") //name = "resolver_userId",
     private User resolver;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "statusId", nullable = false)
     private ReimbursementStatus status;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "typeId", nullable = false)
     private ReimbursementType type;
 
