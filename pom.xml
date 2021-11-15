@@ -8,6 +8,36 @@
 	<name>project1</name>
 	<description>Employee Reimbursement System</description>
 
+	<build>
+		<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>3.1.1</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<mainClass>com.revature.Driver</mainClass>
+							</manifest>
+						</archive>
+						<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+						</descriptorRefs>
+				</configuration>
+				<executions>
+						<execution>
+								<id>make-assembly</id>
+								<phase>package</phase>
+								<goals>
+										<goal>single</goal>
+								</goals>
+						</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
