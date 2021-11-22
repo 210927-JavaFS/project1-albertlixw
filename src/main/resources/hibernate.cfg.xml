@@ -13,7 +13,9 @@
 		<property name = "hibernate.connection.url">jdbc:postgresql://javafs-210927.cngqgibuqdom.us-east-1.rds.amazonaws.com:5432/javafs210927</property>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		<!-- Hibernate Properties -->
-		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+<!--		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>-->
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</property>
+
 		<property name="hibernate.default_schema">project1</property>
 		<!-- Optional -->
 		<property name="hibernate.show_sql">true</property>
