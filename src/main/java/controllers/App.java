@@ -11,6 +11,7 @@ public class App {
     private static Javalin app;
 
     public static void main(String [] args){
+        System.out.println("==============App.java Successfully started running. ==============");
           //initialize tables
         ReimbursementStatus status1 = new ReimbursementStatus(1);
         ReimbursementStatus status2 = new ReimbursementStatus(2);
