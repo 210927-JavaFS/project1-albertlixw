@@ -43,8 +43,8 @@ Employees must select the type of reimbursement as: LODGING, TRAVEL, FOOD, or OT
 **Stretch Goals**
 * TODO: Replace HTML/JavaScript with an Angular single page application.
 * TODO: Users can upload a document or image of their receipt when submitting reimbursements which can stored in the database and reviewed by a financial manager.
-* TODO: Application shall be hosted remotely on an EC2.
-* TODO: Static files (webpages) shall be hosted on an S3 bucket. 
+* In progress: Application shall be hosted remotely on an EC2.
+   * TODO: Static files (webpages) shall be hosted on an S3 bucket. 
 
 **Getting Started**
 * git clone https://github.com/210927-JavaFS/project1-albertlixw.git
