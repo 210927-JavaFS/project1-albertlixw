@@ -41,10 +41,11 @@ Employees must select the type of reimbursement as: LODGING, TRAVEL, FOOD, or OT
 * The front-end view: HTML/JavaScript. The application can call server-side components RESTfully. Passwords are encrypted in Java and securely stored in the database. 
 
 **Stretch Goals**
+* Done: Application hosted remotely on an EC2. Add internal IP/Private IP within AWS into security group for Jenkins to work. 
+
 * TODO: Replace HTML/JavaScript with an Angular single page application.
 * TODO: Users can upload a document or image of their receipt when submitting reimbursements which can stored in the database and reviewed by a financial manager.
-* In progress: Application shall be hosted remotely on an EC2.
-   * TODO: Static files (webpages) shall be hosted on an S3 bucket. 
+* TODO: Static files (webpages) shall be hosted on an S3 bucket. 
 
 **Getting Started**
 * git clone https://github.com/210927-JavaFS/project1-albertlixw.git
