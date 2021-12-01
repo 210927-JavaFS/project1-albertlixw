@@ -15,6 +15,11 @@ public class HibernateUtil {
 		if(session == null) {
 			session = sessionFactory.openSession();
 		}
+		System.out.println(session.isConnected());
+		System.out.println(session.isDirty());
+		System.out.println(session.isOpen());
+		System.out.println(session.getStatistics());
+
 		return session;
 	}
 	
